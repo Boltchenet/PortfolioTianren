@@ -1,0 +1,274 @@
+/* Variables CSS - Design Tokens */
+:root {
+    /* Couleurs de base */
+    --bg-base: #FCFBFA;
+    --text: #1F2937;
+    --muted: #6B7280;
+    --overlay: rgba(252, 251, 250, 0.85);
+    
+    /* Accents par projet */
+    --accent-sage: #E6F6F1;
+    --accent-window: #EEF3F7;
+    --accent-jade: #E8F6F1;
+    --accent-sand: #FBF5EE;
+    --accent-leather: #F6EFE8;
+    --accent-veil: #FEFBFD;
+    --accent-concrete: #F0F2F4;
+    --accent-urban: #F7F6F7;
+    
+    /* Transitions */
+    --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* Espacements */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+}
+
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Layout */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: var(--space-md) 0;
+    z-index: 100;
+    transition: var(--transition);
+    mix-blend-mode: difference;
+}
+
+header.scrolled {
+    background-color: var(--overlay);
+    backdrop-filter: blur(10px);
+    padding: var(--space-sm) 0;
+    mix-blend-mode: normal;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.artist-name a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.artist-name a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: var(--transition);
+}
+
+.artist-name a:hover::after {
+    width: 100%;
+}
+
+/* Navigation */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: var(--space-md);
+}
+
+nav a {
+    position: relative;
+    font-size: 0.9rem;
+    text-transform: lowercase;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: var(--transition);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+/* Footer */
+footer {
+    padding: var(--space-xl) 0;
+    background-color: var(--bg-base);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.social-link {
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Utilitaires */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 4rem;
+    }
+    
+    nav ul {
+        display: none;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .footer-links, .social-links {
+        justify-content: center;
+    }
+}
+/* Ajouts à main.css */
+
+/* Amélioration du header */
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: currentColor;
+    margin: 4px 0;
+    transition: var(--transition);
+}
+
+/* Amélioration du footer */
+.social-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    background-color: var(--text);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Amélioration de la visibilité du header en scroll */
+header.scrolled {
+    background-color: var(--overlay);
+    backdrop-filter: blur(10px);
+    padding: var(--space-sm) 0;
+    mix-blend-mode: normal;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
