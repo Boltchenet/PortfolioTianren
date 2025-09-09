@@ -8,12 +8,21 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Menu hamburger pour mobile
-const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('nav ul');
+// Menu radial
+const radialMenu = document.querySelector('.radial-menu');
+const artistName = document.querySelector('.artist-name');
 
-if (hamburger && nav) {
-    hamburger.addEventListener('click', () => {
-        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+if (artistName) {
+    artistName.addEventListener('click', (e) => {
+        e.preventDefault();
+        radialMenu.classList.toggle('active');
     });
 }
+
+// Fermer le menu en cliquant à l'extérieur
+document.addEventListener('click', (e) => {
+    if (radialMenu && radialMenu.classList.contains('active') && 
+        !radialMenu.contains(e.target)) {
+        radialMenu.classList.remove('active');
+    }
+});
