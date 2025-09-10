@@ -8,21 +8,33 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Menu radial
-const radialMenu = document.querySelector('.radial-menu');
-const artistName = document.querySelector('.artist-name');
+// Hotbar navigation
+const artistName = document.getElementById('artistName');
+const hotbarNav = document.getElementById('hotbarNav');
 
 if (artistName) {
     artistName.addEventListener('click', (e) => {
         e.preventDefault();
-        radialMenu.classList.toggle('active');
+        e.stopPropagation();
+        hotbarNav.classList.toggle('active');
+        artistName.classList.toggle('active');
     });
 }
 
 // Fermer le menu en cliquant à l'extérieur
 document.addEventListener('click', (e) => {
-    if (radialMenu && radialMenu.classList.contains('active') && 
-        !radialMenu.contains(e.target)) {
-        radialMenu.classList.remove('active');
+    if (hotbarNav && hotbarNav.classList.contains('active') && 
+        !hotbarNav.contains(e.target) && 
+        e.target !== artistName) {
+        hotbarNav.classList.remove('active');
+        artistName.classList.remove('active');
+    }
+});
+
+// Fermer le menu en scrollant
+window.addEventListener('scroll', () => {
+    if (hotbarNav && hotbarNav.classList.contains('active')) {
+        hotbarNav.classList.remove('active');
+        artistName.classList.remove('active');
     }
 });

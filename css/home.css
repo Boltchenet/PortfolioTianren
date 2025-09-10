@@ -1,6 +1,6 @@
 /* Page d'accueil - Nouveau design */
 .projects-section {
-    padding: calc(var(--space-xl) + 60px) 0 var(--space-xl);
+    padding: calc(var(--space-xl) + 100px) 0 var(--space-xl);
     position: relative;
 }
 
