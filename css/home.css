@@ -94,7 +94,7 @@
 .project-card:nth-child(7) { animation-delay: 0.7s; }
 .project-card:nth-child(8) { animation-delay: 0.8s; }
 
-/* RESPONSIVE DESIGN - Effet Pinterest mobile/tablette */
+/* RESPONSIVE DESIGN - Effet Pinterest amélioré avec cases plus grandes */
 @media (max-width: 1024px) {
     .projects-section {
         padding: calc(var(--space-lg) + 80px) 0 var(--space-lg);
@@ -103,9 +103,9 @@
     .projects-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: minmax(200px, auto);
+        grid-auto-rows: minmax(250px, auto);
         grid-auto-flow: dense; /* Remplissage automatique des trous */
-        gap: 16px;
+        gap: 20px;
     }
     
     .project-card,
@@ -121,18 +121,22 @@
         grid-row: unset;
         height: auto;
         aspect-ratio: unset;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     }
     
-    /* Hauteurs variées pour effet Pinterest */
-    .project-card:nth-child(3n+1) { grid-row: span 2; min-height: 320px; }
-    .project-card:nth-child(5n+2) { grid-row: span 1; min-height: 240px; }
-    .project-card:nth-child(7n+3) { grid-row: span 3; min-height: 380px; }
+    /* Hauteurs variées pour effet Pinterest plus prononcé */
+    .project-card:nth-child(3n+1) { grid-row: span 2; min-height: 380px; }
+    .project-card:nth-child(5n+2) { grid-row: span 1; min-height: 280px; }
+    .project-card:nth-child(7n+3) { grid-row: span 3; min-height: 480px; }
+    .project-card:nth-child(4n+4) { grid-row: span 2; min-height: 350px; }
+    .project-card:nth-child(6n+5) { grid-row: span 1; min-height: 300px; }
     
     /* Titres visibles sur mobile */
     .project-overlay {
         opacity: 1;
         background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-        padding: 15px;
+        padding: 18px;
     }
     
     .project-title,
@@ -141,44 +145,76 @@
     /* Désactiver effets hover */
     .project-card:hover .project-image { transform: none; }
     
-    .project-image { height: 100%; min-height: 200px; }
-    .project-title { font-size: 1.2rem; margin-bottom: 5px; }
-    .project-year { font-size: 0.8rem; }
+    .project-image { 
+        height: 100%; 
+        min-height: 250px; 
+    }
+    .project-title { 
+        font-size: 1.4rem; 
+        margin-bottom: 8px; 
+    }
+    .project-year { 
+        font-size: 0.9rem; 
+    }
 }
 
 @media (max-width: 768px) {
-    .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .projects-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 16px; 
+    }
     .project-card { margin-bottom: 0; }
-    .project-card:nth-child(3n+1) { min-height: 280px; }
-    .project-card:nth-child(5n+2) { min-height: 200px; }
-    .project-card:nth-child(7n+3) { min-height: 340px; }
+    .project-card:nth-child(3n+1) { min-height: 320px; }
+    .project-card:nth-child(5n+2) { min-height: 240px; }
+    .project-card:nth-child(7n+3) { min-height: 400px; }
+    .project-card:nth-child(4n+4) { min-height: 300px; }
+    .project-card:nth-child(6n+5) { min-height: 260px; }
 }
 
 @media (max-width: 480px) {
-    .projects-grid { grid-template-columns: 1fr; gap: 15px; }
+    .projects-grid { 
+        grid-template-columns: 1fr; 
+        gap: 18px; 
+    }
     .project-card:nth-child(3n+1),
     .project-card:nth-child(5n+2),
-    .project-card:nth-child(7n+3) { min-height: 250px; grid-row: unset; }
+    .project-card:nth-child(7n+3),
+    .project-card:nth-child(4n+4),
+    .project-card:nth-child(6n+5) { 
+        min-height: 280px; 
+        grid-row: unset; 
+    }
 }
 
 /* iPhone portrait */
 @media only screen and (max-device-width: 480px) and (orientation: portrait) {
-    .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    .project-card { border-radius: 8px; overflow: hidden; }
-    .project-card:nth-child(odd) { height: 280px; }
-    .project-card:nth-child(even) { height: 220px; }
-    .project-card:nth-child(3n) { height: 320px; }
-    .project-card:nth-child(5n) { height: 260px; }
-    .project-overlay { padding: 12px; }
-    .project-title { font-size: 1.1rem; }
+    .projects-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 12px; 
+    }
+    .project-card { 
+        border-radius: 10px; 
+        overflow: hidden; 
+    }
+    .project-card:nth-child(odd) { height: 320px; }
+    .project-card:nth-child(even) { height: 260px; }
+    .project-card:nth-child(3n) { height: 380px; }
+    .project-card:nth-child(5n) { height: 300px; }
+    .project-card:nth-child(4n) { height: 340px; }
+    .project-overlay { padding: 15px; }
+    .project-title { font-size: 1.3rem; }
 }
 
 /* iPhone paysage */
 @media only screen and (max-device-width: 930px) and (orientation: landscape) {
-    .projects-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .project-card { height: 300px; }
-    .project-card:nth-child(4n) { height: 280px; }
-    .project-card:nth-child(5n) { height: 320px; }
+    .projects-grid { 
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 16px; 
+    }
+    .project-card { height: 350px; }
+    .project-card:nth-child(4n) { height: 320px; }
+    .project-card:nth-child(5n) { height: 380px; }
+    .project-card:nth-child(3n) { height: 300px; }
 }
 
 /* Support des appareils Apple avec encoche */
