@@ -1,68 +1,71 @@
-// Données des projets (à remplacer par des appels API ou des données statiques)
+// Données des projets mises à jour
 const projects = [
     {
         id: 1,
         title: "SoloDate",
         year: "2024",
-        image: "assets/images/project-solodate/cover.jpg",
+        image: "assets/images/home/solodate-title.jpeg",
         accentColor: "var(--accent-sage)",
         slug: "solodate"
     },
     {
         id: 2,
-        title: "Beyond the Echo",
+        title: "BeyondTheEcho",
         year: "2023",
-        image: "assets/images/project-beyond-the-echo/cover.jpg",
+        image: "assets/images/home/beyond-the-echo-title.jpeg",
         accentColor: "var(--accent-window)",
         slug: "beyond-the-echo"
     },
     {
         id: 3,
-        title: "Interflow",
+        title: "Interflows",
         year: "2023",
-        image: "assets/images/project-interflow/cover.jpg",
+        image: "assets/images/home/interflows-title.jpg",
         accentColor: "var(--accent-jade)",
-        slug: "interflow"
+        slug: "interflows"
     },
     {
         id: 4,
-        title: "Fourniture lampes",
-        year: "2023",
-        image: "assets/images/project-fourniture-lampes/cover.jpg",
+        title: "Furniture",
+        year: "2024",
+        image: "assets/images/home/furniture-title.jpg",
         accentColor: "var(--accent-sand)",
-        slug: "fourniture-lampes"
+        slug: "furniture"
     },
     {
         id: 5,
-        title: "Fourniture cuir",
-        year: "2023",
-        image: "assets/images/project-fourniture-cuir/cover.jpg",
+        title: "Furniture",
+        year: "2025",
+        image: "assets/images/home/furniture2-title.jpg",
         accentColor: "var(--accent-leather)",
-        slug: "fourniture-cuir"
+        slug: "furniture2"
     },
     {
         id: 6,
-        title: "Lookbook voile",
-        year: "2022",
-        image: "assets/images/project-lookbook-voile/cover.jpg",
+        title: "Lookbook",
+        year: "2024",
+        image: "assets/images/home/lookbook-title.jpg",
         accentColor: "var(--accent-veil)",
-        slug: "lookbook-voile"
+        slug: "lookbook",
+        vertical: true
     },
     {
         id: 7,
-        title: "Lookbook spirale",
-        year: "2022",
-        image: "assets/images/project-lookbook-spirale/cover.jpg",
+        title: "Lookbook",
+        year: "2023",
+        image: "assets/images/home/fashion2024-title.png",
         accentColor: "var(--accent-concrete)",
-        slug: "lookbook-spirale"
+        slug: "lookbook2",
+        vertical: true
     },
     {
         id: 8,
-        title: "Lookbook mannequin",
-        year: "2022",
-        image: "assets/images/project-lookbook-mannequin/cover.jpg",
+        title: "Lookbook",
+        year: "2024",
+        image: "assets/images/home/lookbook2-title.jpg",
         accentColor: "var(--accent-urban)",
-        slug: "lookbook-mannequin"
+        slug: "lookbook3",
+        vertical: true
     }
 ];
 
@@ -74,6 +77,11 @@ function loadProjects() {
         const card = document.createElement('div');
         card.className = `project-card fade-in delay-${index % 8}`;
         card.style.backgroundColor = project.accentColor;
+        
+        // Ajouter une classe supplémentaire pour les images verticales
+        if (project.vertical) {
+            card.classList.add('vertical-card');
+        }
         
         card.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="project-image">

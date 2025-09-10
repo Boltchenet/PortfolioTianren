@@ -43,21 +43,18 @@
     grid-column: span 4; 
     grid-row: span 1;
 }
-.project-card:nth-child(6) { 
-    grid-column: span 8; 
-    grid-row: span 1;
+/* Lookbook vertical - prend plus de hauteur */
+.project-card.vertical-card:nth-child(6) { 
+    grid-column: span 3; 
+    grid-row: span 2;
 }
-.project-card:nth-child(7) { 
-    grid-column: span 4; 
-    grid-row: span 1;
+.project-card.vertical-card:nth-child(7) { 
+    grid-column: span 3; 
+    grid-row: span 2;
 }
-.project-card:nth-child(8) { 
-    grid-column: span 5; 
-    grid-row: span 1;
-}
-.project-card:nth-child(9) { 
-    grid-column: span 7; 
-    grid-row: span 1;
+.project-card.vertical-card:nth-child(8) { 
+    grid-column: span 3; 
+    grid-row: span 2;
 }
 
 .project-image {
@@ -147,6 +144,12 @@
     .project-card:nth-child(2) {
         grid-column: span 6;
     }
+    
+    /* En tablette, les lookbooks passent en disposition normale */
+    .project-card.vertical-card {
+        grid-column: span 4 !important;
+        grid-row: span 1 !important;
+    }
 }
 
 @media (max-width: 768px) {
@@ -158,6 +161,7 @@
     
     .project-card {
         grid-column: span 1 !important;
+        grid-row: span 1 !important;
         height: auto;
         aspect-ratio: 3/4;
     }
