@@ -1,7 +1,8 @@
-/* Page d'accueil - Nouveau design */
+/* Page d'accueil - Nouveau design avec fond crème */
 .projects-section {
     padding: calc(var(--space-xl) + 100px) 0 var(--space-xl);
     position: relative;
+    background-color: var(--bg-base);
 }
 
 /* Grille des projets améliorée */

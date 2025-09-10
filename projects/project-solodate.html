@@ -1,462 +1,46 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoloDate - Portfolio Photographe</title>
-    <style>
-        /* Variables CSS */
-        :root {
-            --bg-base: #FCFBFA;
-            --text: #1F2937;
-            --muted: #6B7280;
-            --accent-sage: #E6F6F1;
-            --accent-sage-dark: #c8e8df;
-            --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-            --space-xs: 0.5rem;
-            --space-sm: 1rem;
-            --space-md: 2rem;
-            --space-lg: 4rem;
-            --space-xl: 8rem;
-        }
-
-        /* Reset et styles de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-base);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-weight: 500;
-            line-height: 1.2;
-        }
-
-        h1, h2 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* Layout */
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 var(--space-sm);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: var(--space-md) 0;
-            z-index: 100;
-            transition: var(--transition);
-            mix-blend-mode: difference;
-        }
-
-        header.scrolled {
-            background-color: var(--bg-base);
-            backdrop-filter: blur(10px);
-            padding: var(--space-sm) 0;
-            mix-blend-mode: normal;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        /* Navigation */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: var(--space-md);
-        }
-
-        nav a {
-            position: relative;
-            font-size: 0.9rem;
-            text-transform: lowercase;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: currentColor;
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            background: none;
-            border: none;
-            color: inherit;
-        }
-
-        .hamburger span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background-color: currentColor;
-            margin: 4px 0;
-            transition: var(--transition);
-        }
-
-        /* Hero Section */
-        .project-hero {
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--accent-sage);
-            margin-top: 80px;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            position: relative;
-            max-width: 800px;
-            padding: 0 var(--space-md);
-        }
-
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 6rem);
-            margin-bottom: var(--space-sm);
-            color: var(--text);
-            font-weight: 400;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            max-width: 500px;
-            margin: 0 auto var(--space-lg);
-            color: var(--muted);
-            font-weight: 300;
-        }
-
-        .hero-meta {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            padding: var(--space-xl) 0;
-        }
-
-        .gallery-intro {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto var(--space-xl);
-        }
-
-        .gallery-intro p {
-            font-size: 1.1rem;
-            color: var(--muted);
-        }
-
-        .masonry-grid {
-            column-count: 4;
-            column-gap: var(--space-sm);
-            padding: 0 var(--space-sm);
-        }
-
-        .grid-item {
-            break-inside: avoid;
-            margin-bottom: var(--space-sm);
-            position: relative;
-            cursor: pointer;
-            border-radius: 8px;
-            overflow: hidden;
-            transition: var(--transition);
-            background-color: var(--accent-sage-dark);
-        }
-
-        .grid-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .grid-image {
-            width: 100%;
-            height: auto;
-            transition: var(--transition);
-        }
-
-        .grid-item:hover .grid-image {
-            transform: scale(1.03);
-        }
-
-        .grid-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: var(--space-sm);
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
-            color: white;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .grid-item:hover .grid-caption {
-            opacity: 1;
-        }
-
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 80vh;
-            object-fit: contain;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 var(--space-md);
-        }
-
-        .lightbox-prev, .lightbox-next {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-
-        .lightbox-prev:hover, .lightbox-next:hover {
-            opacity: 1;
-        }
-
-        .lightbox-meta {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: var(--space-md);
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-            color: white;
-        }
-
-        /* Footer */
-        footer {
-            padding: var(--space-xl) 0;
-            background-color: var(--bg-base);
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: var(--space-md);
-        }
-
-        .social-links {
-            display: flex;
-            gap: var(--space-sm);
-        }
-
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-
-        .social-link:hover {
-            background-color: var(--text);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .masonry-grid {
-                column-count: 3;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .masonry-grid {
-                column-count: 2;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .masonry-grid {
-                column-count: 1;
-            }
-            
-            .hero-title {
-                font-size: 3rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: var(--space-md);
-                text-align: center;
-            }
-            
-            .footer-links, .social-links {
-                justify-content: center;
-            }
-        }
-
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-    </style>
+    <title>SoloDate - Photographer Portfolio</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/project-solodate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
     <header id="header">
         <div class="container header-container">
-            <a href="../index.html" class="logo">Portfolio</a>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Accueil</a></li>
-                    <li><a href="../index.html#projects">Projets</a></li>
-                    <li><a href="../about.html">À propos</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                </ul>
-                <button class="hamburger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
+            <div class="header-content">
+                <div class="artist-name" id="artistName">Tianren Wang</div>
+                <nav class="hotbar-nav" id="hotbarNav">
+                    <a href="../index.html#projects" class="nav-item">Projects</a>
+                    <a href="../about.html" class="nav-item">About</a>
+                    <a href="../contact.html" class="nav-item">Contact</a>
+                    <a href="../legal.html" class="nav-item">Legal</a>
+                    <a href="../privacy.html" class="nav-item">Privacy</a>
+                </nav>
+            </div>
         </div>
     </header>
 
     <main>
-        <section class="project-hero">
-            <div class="hero-content fade-in">
-                <h1 class="hero-title">SoloDate</h1>
-                <p class="hero-subtitle">Une série de 55 photos capturant l'essence des moments solitaires dans la ville lumière</p>
-                <div class="hero-meta">
-                    <span class="project-date">2024</span>
-                    <span class="project-location">Paris, France</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="gallery-section">
+        <section class="project-container">
             <div class="container">
-                <div class="gallery-intro fade-in">
-                    <p>Explorez cette collection unique qui célèbre la solitude comme moment de grâce et de reconnexion avec soi-même. Chaque image raconte une histoire d'introspection et de découverte personnelle au cœur de Paris.</p>
+                <div class="project-hero fade-in">
+                    <div class="project-cover">
+                        <img src="../assets/images/project-solodate/solodate-title.jpeg" alt="SoloDate Project Cover">
+                    </div>
+                    <div class="project-info">
+                        <h1 class="project-title">SoloDate</h1>
+                        <div class="project-year">2024</div>
+                    </div>
                 </div>
                 
-                <div class="masonry-grid" id="masonry-grid">
-                    <!-- Les 55 images seront chargées dynamiquement par JavaScript -->
+                <div class="square-grid" id="square-grid">
+                    <!-- Images will be loaded dynamically by JavaScript -->
                 </div>
             </div>
         </section>
@@ -465,11 +49,11 @@
     <footer>
         <div class="container footer-content">
             <div class="copyright">
-                <p>© 2024 Portfolio Photographe. Tous droits réservés.</p>
+                <p>© 2024 Tianren Wang. All rights reserved.</p>
             </div>
             <div class="footer-links">
-                <a href="../legal.html">Mentions légales</a>
-                <a href="../privacy.html">Politique de confidentialité</a>
+                <a href="../legal.html">Legal</a>
+                <a href="../privacy.html">Privacy Policy</a>
             </div>
             <div class="social-links">
                 <a href="#" class="social-link" aria-label="Instagram">
@@ -497,131 +81,18 @@
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" aria-label="Fermer">×</button>
+        <button class="lightbox-close" aria-label="Close">×</button>
         <div class="lightbox-content">
             <img src="" alt="" class="lightbox-image" id="lightbox-image">
-            <div class="lightbox-meta">
-                <h3 class="lightbox-title" id="lightbox-title">SoloDate</h3>
-                <p class="lightbox-details" id="lightbox-details">2024 • Paris, France</p>
-            </div>
         </div>
         <div class="lightbox-nav">
-            <button class="lightbox-prev" aria-label="Image précédente">‹</button>
-            <button class="lightbox-next" aria-label="Image suivante">›</button>
+            <button class="lightbox-prev" aria-label="Previous image">‹</button>
+            <button class="lightbox-next" aria-label="Next image">›</button>
         </div>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
     </div>
 
-    <script>
-        // Navigation sticky
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // Menu hamburger pour mobile
-        const hamburger = document.querySelector('.hamburger');
-        const nav = document.querySelector('nav ul');
-
-        if (hamburger && nav) {
-            hamburger.addEventListener('click', () => {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-            });
-        }
-
-        // Génération de la galerie Masonry avec 55 images
-        function generateGallery() {
-            const masonryGrid = document.getElementById('masonry-grid');
-            
-            for (let i = 1; i <= 55; i++) {
-                const num = i.toString().padStart(2, '0');
-                const gridItem = document.createElement('div');
-                gridItem.className = 'grid-item fade-in';
-                gridItem.style.animationDelay = `${i * 0.05}s`;
-                
-                gridItem.innerHTML = `
-                    <img src="../assets/images/project-solodate/${num}.jpg" alt="SoloDate ${num}" class="grid-image">
-                    <div class="grid-caption">Image ${num}</div>
-                `;
-                
-                gridItem.addEventListener('click', () => {
-                    openLightbox(i - 1);
-                });
-                
-                masonryGrid.appendChild(gridItem);
-            }
-        }
-
-        // Lightbox functionality
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImage = document.getElementById('lightbox-image');
-        const lightboxTitle = document.getElementById('lightbox-title');
-        const lightboxDetails = document.getElementById('lightbox-details');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        const lightboxPrev = document.querySelector('.lightbox-prev');
-        const lightboxNext = document.querySelector('.lightbox-next');
-
-        let currentImageIndex = 0;
-        const totalImages = 55;
-
-        // Ouvrir la lightbox
-        function openLightbox(index) {
-            const num = (index + 1).toString().padStart(2, '0');
-            lightboxImage.src = `../assets/images/project-solodate/${num}.jpg`;
-            lightboxImage.alt = `SoloDate ${num}`;
-            lightboxTitle.textContent = `SoloDate ${num}`;
-            lightboxDetails.textContent = '2024 • Paris, France';
-            lightbox.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            currentImageIndex = index;
-        }
-
-        // Fermer la lightbox
-        function closeLightbox() {
-            lightbox.classList.remove('open');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Navigation dans la lightbox
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % totalImages;
-            const num = (currentImageIndex + 1).toString().padStart(2, '0');
-            lightboxImage.src = `../assets/images/project-solodate/${num}.jpg`;
-            lightboxImage.alt = `SoloDate ${num}`;
-            lightboxTitle.textContent = `SoloDate ${num}`;
-        }
-
-        function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-            const num = (currentImageIndex + 1).toString().padStart(2, '0');
-            lightboxImage.src = `../assets/images/project-solodate/${num}.jpg`;
-            lightboxImage.alt = `SoloDate ${num}`;
-            lightboxTitle.textContent = `SoloDate ${num}`;
-        }
-
-        // Écouteurs d'événements
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-
-        lightboxPrev.addEventListener('click', showPrevImage);
-        lightboxNext.addEventListener('click', showNextImage);
-
-        // Navigation clavier
-        document.addEventListener('keydown', (e) => {
-            if (lightbox.classList.contains('open')) {
-                if (e.key === 'Escape') closeLightbox();
-                if (e.key === 'ArrowLeft') showPrevImage();
-                if (e.key === 'ArrowRight') showNextImage();
-            }
-        });
-
-        // Charger la galerie lorsque la page est prête
-        document.addEventListener('DOMContentLoaded', generateGallery);
-    </script>
+    <script src="../js/main.js"></script>
+    <script src="../js/project-solodate.js"></script>
 </body>
 </html>

@@ -1,40 +1,97 @@
+// Liste des images dans l'ordre spécifié
+const imageList = [
+    'solodate-title.jpeg',
+    'treehand.jpg',
+    'leavesriver.jpeg',
+    'treeroad.jpg',
+    'sucette.jpg',
+    'streetmirror.jpg',
+    'pissenlit.jpeg',
+    'benchleaves.jpg',
+    'stairs.jpg',
+    'tabledust.jpg',
+    'flaque.jpg',
+    'campfire.jpg',
+    'amazondelivery.jpg',
+    'leavestail.jpg',
+    'bouc.jpg',
+    'fesse.jpeg',
+    'roseflower.jpeg',
+    'ant.jpg',
+    'gadoue.jpeg',
+    'bleu.jpeg',
+    'grospissenlit.jpeg',
+    'spiderweb.jpg',
+    'windyhair.jpeg',
+    'pissenlitweb.jpeg',
+    'leavesback.jpg',
+    'watersmoothie.jpeg',
+    'plasticblackrose.jpeg',
+    'whatmedoc.jpg',
+    'instasky.jpg',
+    'bluebranch.jpg',
+    'electricblue.jpg',
+    'leavesonthefloor.jpg',
+    'wallight.jpg',
+    'roadcross.jpg',
+    'alienstick.jpg',
+    'blankarrowsign.jpg',
+    'lightyflower.jpg',
+    'fireworksleaves.jpg',
+    'skinfinger.jpg',
+    'lukcigarette.jpg',
+    'nightvisiontree.jpg',
+    'spongebobtree.jpg',
+    'tecceratcube.jpg',
+    'balancednature.jpg',
+    'sleepyflowers.jpg',
+    'crystalwater.jpg',
+    'thingonthewindow.jpg',
+    'clearwater.jpg',
+    'crackedegg.jpg',
+    'flyingduck.jpg',
+    'plancher.jpg',
+    'savethatpigeon.jpg',
+    'dustypigeon.jpg',
+    'drowningpigeon.jpg'
+];
+
+// Génération de la galerie avec des images carrées
+function generateGallery() {
+    const squareGrid = document.getElementById('square-grid');
+    
+    imageList.forEach((imageName, index) => {
+        const gridItem = document.createElement('div');
+        gridItem.className = 'grid-item fade-in';
+        gridItem.style.animationDelay = `${index * 0.05}s`;
+        
+        gridItem.innerHTML = `
+            <img src="../assets/images/project-solodate/${imageName}" alt="SoloDate ${imageName}" class="grid-image">
+        `;
+        
+        gridItem.addEventListener('click', () => {
+            openLightbox(index);
+        });
+        
+        squareGrid.appendChild(gridItem);
+    });
+}
+
 // Lightbox functionality
-const lightbox = document.createElement('div');
-lightbox.className = 'lightbox';
-lightbox.innerHTML = `
-    <button class="lightbox-close" aria-label="Fermer">×</button>
-    <div class="lightbox-content">
-        <img src="" alt="" class="lightbox-image">
-        <div class="lightbox-meta">
-            <h3 class="lightbox-title">Titre de l'image</h3>
-            <p class="lightbox-details">2023 • Paris, France</p>
-        </div>
-    </div>
-    <div class="lightbox-nav">
-        <button class="lightbox-prev" aria-label="Image précédente">‹</button>
-        <button class="lightbox-next" aria-label="Image suivante">›</button>
-    </div>
-`;
-
-document.body.appendChild(lightbox);
-
-const lightboxImage = lightbox.querySelector('.lightbox-image');
-const lightboxTitle = lightbox.querySelector('.lightbox-title');
-const lightboxDetails = lightbox.querySelector('.lightbox-details');
-const lightboxClose = lightbox.querySelector('.lightbox-close');
-const lightboxPrev = lightbox.querySelector('.lightbox-prev');
-const lightboxNext = lightbox.querySelector('.lightbox-next');
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+const lightboxClose = document.querySelector('.lightbox-close');
+const lightboxPrev = document.querySelector('.lightbox-prev');
+const lightboxNext = document.querySelector('.lightbox-next');
+const lightboxCounter = document.getElementById('lightbox-counter');
 
 let currentImageIndex = 0;
-const galleryImages = Array.from(document.querySelectorAll('.gallery-image'));
 
 // Ouvrir la lightbox
 function openLightbox(index) {
-    const image = galleryImages[index];
-    lightboxImage.src = image.src;
-    lightboxImage.alt = image.alt;
-    lightboxTitle.textContent = image.alt;
-    lightboxDetails.textContent = '2024 • Paris, France'; // À adapter
+    lightboxImage.src = `../assets/images/project-solodate/${imageList[index]}`;
+    lightboxImage.alt = `SoloDate ${imageList[index]}`;
+    lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     currentImageIndex = index;
@@ -48,12 +105,12 @@ function closeLightbox() {
 
 // Navigation dans la lightbox
 function showNextImage() {
-    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    currentImageIndex = (currentImageIndex + 1) % imageList.length;
     openLightbox(currentImageIndex);
 }
 
 function showPrevImage() {
-    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    currentImageIndex = (currentImageIndex - 1 + imageList.length) % imageList.length;
     openLightbox(currentImageIndex);
 }
 
@@ -63,8 +120,15 @@ lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
 });
 
-lightboxPrev.addEventListener('click', showPrevImage);
-lightboxNext.addEventListener('click', showNextImage);
+lightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showPrevImage();
+});
+
+lightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showNextImage();
+});
 
 // Navigation clavier
 document.addEventListener('keydown', (e) => {
@@ -75,9 +139,5 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Ouvrir la lightbox au clic sur les images de la galerie
-galleryImages.forEach((image, index) => {
-    image.addEventListener('click', () => {
-        openLightbox(index);
-    });
-});
+// Charger la galerie lorsque la page est prête
+document.addEventListener('DOMContentLoaded', generateGallery);

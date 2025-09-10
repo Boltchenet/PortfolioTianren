@@ -1,20 +1,24 @@
-/* Variables CSS - Design Tokens */
+/* Variables CSS - Design Tokens révisées */
 :root {
-    /* Couleurs de base */
-    --bg-base: #FCFBFA;
-    --text: #1F2937;
+    /* Nouvelle palette de couleurs crème */
+    --bg-base: #F8F6F2;
+    --bg-cream: #F5F1E8;
+    --bg-light: #FFFDF9;
+    --text: #2C2C2C;
+    --text-dark: #1A1A1A;
     --muted: #6B7280;
-    --overlay: rgba(252, 251, 250, 0.85);
+    --overlay: rgba(248, 246, 242, 0.95);
+    --overlay-light: rgba(255, 253, 249, 0.98);
     
-    /* Accents par projet */
-    --accent-sage: #E6F6F1;
-    --accent-window: #EEF3F7;
-    --accent-jade: #E8F6F1;
-    --accent-sand: #FBF5EE;
-    --accent-leather: #F6EFE8;
-    --accent-veil: #FEFBFD;
-    --accent-concrete: #F0F2F4;
-    --accent-urban: #F7F6F7;
+    /* Accents par projet révisés pour mieux contraster */
+    --accent-sage: #D8E8E4;
+    --accent-window: #E2E9EF;
+    --accent-jade: #DAE8E4;
+    --accent-sand: #F2E9DD;
+    --accent-leather: #EAE2D8;
+    --accent-veil: #F9F5F7;
+    --accent-concrete: #E8EAED;
+    --accent-urban: #EDECED;
     
     /* Transitions */
     --transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -69,7 +73,7 @@ img {
     padding: 0 var(--space-sm);
 }
 
-/* Nouveau Header avec hotbar */
+/* Nouveau Header avec hotbar - Version améliorée */
 header {
     position: fixed;
     top: 0;
@@ -78,14 +82,13 @@ header {
     padding: var(--space-md) 0;
     z-index: 100;
     transition: var(--transition);
-    mix-blend-mode: difference;
+    background: transparent;
 }
 
 header.scrolled {
     background-color: var(--overlay);
     backdrop-filter: blur(10px);
     padding: var(--space-sm) 0;
-    mix-blend-mode: normal;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
@@ -112,8 +115,19 @@ header.scrolled {
     position: relative;
     cursor: pointer;
     z-index: 101;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
     padding-bottom: 5px;
+    color: var(--text-dark);
+}
+
+/* Changement de couleur du nom quand on scroll */
+header:not(.scrolled) .artist-name {
+    color: var(--text-dark);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+header.scrolled .artist-name {
+    color: var(--text-dark);
 }
 
 .artist-name:hover {
@@ -128,7 +142,7 @@ header.scrolled {
     left: 50%;
     width: 0;
     height: 2px;
-    background-color: var(--text);
+    background-color: var(--text-dark);
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -138,7 +152,7 @@ header.scrolled {
     width: 100%;
 }
 
-/* Hotbar navigation */
+/* Hotbar navigation - Version crème/clair */
 .hotbar-nav {
     display: flex;
     gap: var(--space-md);
@@ -149,12 +163,13 @@ header.scrolled {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: var(--overlay);
+    background: var(--overlay-light);
     backdrop-filter: blur(10px);
     padding: var(--space-sm) var(--space-md);
     border-radius: 0 0 12px 12px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     z-index: 100;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .hotbar-nav.active {
@@ -169,18 +184,19 @@ header.scrolled {
     font-size: 0.9rem;
     transition: var(--transition);
     white-space: nowrap;
+    color: var(--text-dark);
 }
 
 .nav-item:hover {
-    background: var(--text);
-    color: var(--bg-base);
+    background: var(--text-dark);
+    color: var(--bg-light);
 }
 
 /* Footer */
 footer {
     padding: var(--space-xl) 0;
-    background-color: var(--bg-base);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-cream);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .footer-content {
