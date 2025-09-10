@@ -5,11 +5,11 @@
     background-color: var(--bg-base);
 }
 
-/* Grille des projets améliorée */
+/* Grille des projets améliorée - Version PC (inchangée) */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: 28vw; /* Réduit de 30vw à 28vw pour les lookbooks */
+    grid-auto-rows: 28vw;
     gap: var(--space-sm);
 }
 
@@ -22,7 +22,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* Placement des projets dans la grille (asymétrique) */
+/* Placement des projets dans la grille PC (inchangé) */
 .project-card:nth-child(1) { 
     grid-column: span 7; 
     grid-row: span 1;
@@ -43,7 +43,6 @@
     grid-column: span 4; 
     grid-row: span 1;
 }
-/* Lookbook vertical - prend plus de hauteur */
 .project-card.vertical-card:nth-child(6),
 .project-card.vertical-card:nth-child(7), 
 .project-card.vertical-card:nth-child(8) { 
@@ -128,7 +127,7 @@
 .project-card:nth-child(7) { animation-delay: 0.7s; }
 .project-card:nth-child(8) { animation-delay: 0.8s; }
 
-/* Responsive */
+/* Responsive Tablet - Légers ajustements */
 @media (max-width: 1024px) {
     .projects-grid {
         grid-auto-rows: 32vw;
@@ -139,7 +138,6 @@
         grid-column: span 6;
     }
     
-    /* En tablette, les lookbooks passent en disposition normale */
     .project-card.vertical-card {
         grid-column: span 4 !important;
         grid-row: span 1 !important;
@@ -152,6 +150,7 @@
         padding: calc(var(--space-lg) + 80px) 0 var(--space-lg);
     }
     
+    /* Reset de la grille PC */
     .projects-grid {
         display: block;
         column-count: 2;
@@ -165,20 +164,68 @@
         break-inside: avoid;
         height: auto !important;
         aspect-ratio: unset;
+        /* Afficher toujours l'overlay sur mobile */
+        overflow: visible;
+    }
+    
+    /* Toujours afficher les titres sur mobile */
+    .project-overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+        padding: 15px;
+    }
+    
+    .project-title,
+    .project-year {
+        transform: translateY(0);
+    }
+    
+    /* Désactiver les effets de survol sur mobile */
+    .project-card:hover .project-image {
+        transform: none;
     }
     
     .project-image {
         height: auto;
         min-height: 200px;
-        max-height: 300px;
     }
     
-    .project-overlay {
-        padding: var(--space-sm);
+    /* Hauteurs variables pour effet Pinterest décalé */
+    .project-card:nth-child(1) { 
+        height: 320px !important; /* SoloDate - grosse case */
+    }
+    
+    .project-card:nth-child(2) { 
+        height: 240px !important; /* BeyondTheEcho - plus petite */
+    }
+    
+    .project-card:nth-child(3) { 
+        height: 280px !important; /* Interflows */
+    }
+    
+    .project-card:nth-child(4) { 
+        height: 260px !important; /* Furniture 1 */
+    }
+    
+    .project-card:nth-child(5) { 
+        height: 300px !important; /* Furniture 2 */
+    }
+    
+    .project-card.vertical-card:nth-child(6) { 
+        height: 350px !important; /* Lookbook 2024 version 1 - vertical */
+    }
+    
+    .project-card.vertical-card:nth-child(7) { 
+        height: 320px !important; /* Lookbook version 2 */
+    }
+    
+    .project-card.vertical-card:nth-child(8) { 
+        height: 340px !important; /* Dernier Lookbook */
     }
     
     .project-title {
         font-size: 1.2rem;
+        margin-bottom: 5px;
     }
     
     .project-year {
@@ -195,8 +242,13 @@
         margin-bottom: 15px;
     }
     
-    .project-image {
-        min-height: 250px;
-        max-height: 350px;
-    }
+    /* Ajustements des hauteurs pour très petits écrans */
+    .project-card:nth-child(1) { height: 280px !important; }
+    .project-card:nth-child(2) { height: 200px !important; }
+    .project-card:nth-child(3) { height: 240px !important; }
+    .project-card:nth-child(4) { height: 220px !important; }
+    .project-card:nth-child(5) { height: 260px !important; }
+    .project-card.vertical-card:nth-child(6) { height: 300px !important; }
+    .project-card.vertical-card:nth-child(7) { height: 280px !important; }
+    .project-card.vertical-card:nth-child(8) { height: 290px !important; }
 }
