@@ -94,7 +94,7 @@
 .project-card:nth-child(7) { animation-delay: 0.7s; }
 .project-card:nth-child(8) { animation-delay: 0.8s; }
 
-/* RESPONSIVE DESIGN - Version simplifiée et corrigée */
+/* RESPONSIVE DESIGN - Version optimisée pour remplir l'espace */
 @media (max-width: 1024px) {
     .projects-section {
         padding: calc(var(--space-lg) + 80px) 0 var(--space-lg);
@@ -104,8 +104,8 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-auto-rows: minmax(200px, auto);
-        gap: 16px;
-        padding: 0 16px;
+        gap: 12px;
+        padding: 0 8px;
     }
     
     /* Reset complet des placements grid pour mobile */
@@ -121,15 +121,15 @@
         grid-column: unset !important;
         grid-row: unset !important;
         height: auto;
-        min-height: 250px;
-        border-radius: 12px;
+        min-height: 280px;
+        border-radius: 10px;
     }
     
     /* Titres toujours visibles sur mobile */
     .project-overlay {
         opacity: 1;
         background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-        padding: 18px;
+        padding: 16px;
     }
     
     .project-title,
@@ -159,21 +159,34 @@
 /* Tablettes */
 @media (max-width: 768px) {
     .projects-grid { 
-        gap: 14px; 
-        padding: 0 14px;
+        gap: 10px; 
+        padding: 0 6px;
     }
     
     .project-card {
-        min-height: 220px;
+        min-height: 240px;
     }
 }
 
-/* Mobiles */
+/* Mobiles - Remplir toute la largeur */
 @media (max-width: 480px) {
     .projects-grid { 
         grid-template-columns: 1fr; 
-        gap: 16px; 
-        padding: 0 12px;
+        gap: 14px; 
+        padding: 0 4px;
+    }
+    
+    .project-card {
+        min-height: 300px;
+    }
+}
+
+/* iPhone 13 Pro Max spécifique - Remplir toute la largeur */
+@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 8px;
     }
     
     .project-card {
@@ -181,23 +194,10 @@
     }
 }
 
-/* iPhone 13 Pro Max spécifique */
-@media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-        padding: 0 16px;
-    }
-    
-    .project-card {
-        min-height: 260px;
-    }
-}
-
 /* Support des appareils Apple avec encoche */
 @supports(padding: max(0px)) {
     .projects-section .container {
-        padding-left: max(1rem, env(safe-area-inset-left));
-        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
     }
 }
