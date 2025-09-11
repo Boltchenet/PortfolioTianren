@@ -129,7 +129,7 @@
     .project-overlay {
         opacity: 1;
         background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
-        padding: 16px;
+        padding: 14px;
     }
     
     .project-title,
@@ -146,13 +146,15 @@
         height: 100%; 
     }
     
+    /* TEXTE RÉDUIT DE 30% */
     .project-title { 
-        font-size: 1.6rem; 
-        margin-bottom: 8px; 
+        font-size: 1.12rem; /* Réduction de 30% par rapport à 1.6rem */
+        margin-bottom: 6px; 
+        line-height: 1.2;
     }
     
     .project-year { 
-        font-size: 1rem; 
+        font-size: 0.7rem; /* Réduction de 30% par rapport à 1rem */
     }
 }
 
@@ -165,6 +167,15 @@
     
     .project-card {
         min-height: 280px;
+    }
+    
+    /* Ajustement supplémentaire pour tablettes */
+    .project-title { 
+        font-size: 1.05rem; 
+    }
+    
+    .project-year { 
+        font-size: 0.65rem; 
     }
 }
 
@@ -179,6 +190,19 @@
     .project-card {
         min-height: 380px;
     }
+    
+    /* Ajustement pour petits écrans */
+    .project-overlay {
+        padding: 12px;
+    }
+    
+    .project-title { 
+        font-size: 1rem; 
+    }
+    
+    .project-year { 
+        font-size: 0.6rem; 
+    }
 }
 
 /* iPhone 13 Pro Max spécifique - Remplir toute la largeur */
@@ -192,6 +216,14 @@
     .project-card {
         min-height: 340px;
     }
+    
+    .project-title { 
+        font-size: 1.05rem; 
+    }
+    
+    .project-year { 
+        font-size: 0.65rem; 
+    }
 }
 
 /* Grands mobiles en mode paysage */
@@ -204,6 +236,14 @@
     
     .project-card {
         min-height: 280px;
+    }
+    
+    .project-title { 
+        font-size: 0.95rem; 
+    }
+    
+    .project-year { 
+        font-size: 0.6rem; 
     }
 }
 
@@ -222,6 +262,10 @@
     }
     
     .project-title { 
-        font-size: 1.4rem; 
+        font-size: 0.9rem; 
+    }
+    
+    .project-year { 
+        font-size: 0.55rem; 
     }
 }
