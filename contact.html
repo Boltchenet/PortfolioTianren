@@ -1,1 +1,407 @@
-<!DOCTYPE html><html><head><title>Contact</title></head><body></body></html> 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Refonte Responsive iPhone</title>
+    <style>
+        /* Variables CSS - Design Tokens révisées */
+        :root {
+            --bg-base: #F8F6F2;
+            --bg-cream: #F5F1E8;
+            --text: #2C2C2C;
+            --text-dark: #1A1A1A;
+            --muted: #6B7280;
+            --overlay: rgba(248, 246, 242, 0.95);
+            
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 8rem;
+        }
+
+        /* Reset et styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+
+        /* Section des projets */
+        .projects-section {
+            padding: calc(var(--space-xl) + 100px) 0 var(--space-xl);
+            position: relative;
+            background-color: var(--bg-base);
+        }
+
+        /* Grille desktop (inchangée) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 28vw;
+            gap: var(--space-sm);
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Placement desktop spécifique */
+        .project-card:nth-child(1) { grid-column: span 7; grid-row: span 1; }
+        .project-card:nth-child(2) { grid-column: span 5; grid-row: span 1; }
+        .project-card:nth-child(3) { grid-column: span 4; grid-row: span 1; }
+        .project-card:nth-child(4) { grid-column: span 4; grid-row: span 1; }
+        .project-card:nth-child(5) { grid-column: span 4; grid-row: span 1; }
+        .project-card.vertical-card:nth-child(6),
+        .project-card.vertical-card:nth-child(7), 
+        .project-card.vertical-card:nth-child(8) { 
+            grid-column: span 3; 
+            grid-row: span 2; 
+        }
+
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: var(--space-md);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 70%);
+            opacity: 0;
+            transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            color: white;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: var(--space-xs);
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .project-year {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transform: translateY(20px);
+            transition: transform 0.5s ease 0.1s;
+        }
+
+        .project-card:hover .project-title,
+        .project-card:hover .project-year {
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE DESIGN POUR IPHONE ET MOBILE */
+        @media only screen and (max-width: 1024px) {
+            .projects-section {
+                padding: calc(var(--space-lg) + 80px) 0 var(--space-lg);
+            }
+            
+            /* Reset de la grille desktop */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: minmax(200px, auto);
+                gap: 16px;
+            }
+            
+            /* Réinitialisation des placements spécifiques */
+            .project-card,
+            .project-card:nth-child(1),
+            .project-card:nth-child(2),
+            .project-card:nth-child(3),
+            .project-card:nth-child(4),
+            .project-card:nth-child(5),
+            .project-card.vertical-card:nth-child(6),
+            .project-card.vertical-card:nth-child(7),
+            .project-card.vertical-card:nth-child(8) {
+                grid-column: unset;
+                grid-row: unset;
+                height: auto;
+                aspect-ratio: unset;
+            }
+            
+            /* Varier les hauteurs pour effet Pinterest */
+            .project-card:nth-child(3n+1) {
+                grid-row: span 2;
+                min-height: 320px;
+            }
+            
+            .project-card:nth-child(5n+2) {
+                grid-row: span 1;
+                min-height: 240px;
+            }
+            
+            .project-card:nth-child(7n+3) {
+                grid-row: span 3;
+                min-height: 380px;
+            }
+            
+            /* Toujours afficher les titres sur mobile/tablette */
+            .project-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+                padding: 15px;
+            }
+            
+            .project-title,
+            .project-year {
+                transform: translateY(0);
+            }
+            
+            /* Désactiver les effets de survol sur mobile */
+            .project-card:hover .project-image {
+                transform: none;
+            }
+            
+            .project-image {
+                height: 100%;
+                min-height: 200px;
+            }
+            
+            .project-title {
+                font-size: 1.2rem;
+                margin-bottom: 5px;
+            }
+            
+            .project-year {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .project-card {
+                margin-bottom: 0;
+            }
+            
+            /* Ajustements des hauteurs pour mobiles */
+            .project-card:nth-child(3n+1) {
+                min-height: 280px;
+            }
+            
+            .project-card:nth-child(5n+2) {
+                min-height: 200px;
+            }
+            
+            .project-card:nth-child(7n+3) {
+                min-height: 340px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            /* Sur très petits écrans, on revient à une disposition simple */
+            .project-card:nth-child(3n+1),
+            .project-card:nth-child(5n+2),
+            .project-card:nth-child(7n+3) {
+                min-height: 250px;
+                grid-row: unset;
+            }
+        }
+
+        /* Media Query spécifique pour iPhone en orientation portrait */
+        @media only screen and (max-device-width: 480px) and (orientation: portrait) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .project-card {
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            .project-card:nth-child(odd) {
+                height: 280px;
+            }
+            
+            .project-card:nth-child(even) {
+                height: 220px;
+            }
+            
+            .project-card:nth-child(3n) {
+                height: 320px;
+            }
+            
+            .project-card:nth-child(5n) {
+                height: 260px;
+            }
+            
+            .project-overlay {
+                padding: 12px;
+            }
+            
+            .project-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Media Query spécifique pour iPhone en orientation paysage */
+        @media only screen and (max-device-width: 930px) and (orientation: landscape) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            
+            .project-card {
+                height: 300px;
+            }
+            
+            .project-card:nth-child(4n) {
+                height: 280px;
+            }
+            
+            .project-card:nth-child(5n) {
+                height: 320px;
+            }
+        }
+
+        /* Support des appareils Apple avec encoche */
+        @supports(padding: max(0px)) {
+            .container {
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <img src="https://picsum.photos/800/600?random=1" alt="SoloDate" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">SoloDate</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 2 -->
+                <div class="project-card">
+                    <img src="https://picsum.photos/800/600?random=2" alt="BeyondTheEcho" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">BeyondTheEcho</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 3 -->
+                <div class="project-card">
+                    <img src="https://picsum.photos/800/600?random=3" alt="Interflows" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Interflows</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 4 -->
+                <div class="project-card">
+                    <img src="https://picsum.photos/800/600?random=4" alt="Furniture" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Furniture</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 5 -->
+                <div class="project-card">
+                    <img src="https://picsum.photos/800/600?random=5" alt="Furniture" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Furniture</h3>
+                        <span class="project-year">2025</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 6 -->
+                <div class="project-card vertical-card">
+                    <img src="https://picsum.photos/800/1200?random=6" alt="Lookbook" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Lookbook</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 7 -->
+                <div class="project-card vertical-card">
+                    <img src="https://picsum.photos/800/1200?random=7" alt="Lookbook" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Lookbook</h3>
+                        <span class="project-year">2023</span>
+                    </div>
+                </div>
+                
+                <!-- Projet 8 -->
+                <div class="project-card vertical-card">
+                    <img src="https://picsum.photos/800/1200?random=8" alt="Lookbook" class="project-image">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Lookbook</h3>
+                        <span class="project-year">2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Détection de l'appareil et application de classes spécifiques
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+            document.body.classList.add('ios-device');
+        }
+        
+        if (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
+            document.body.classList.add('ios-device');
+        }
+    </script>
+</body>
+</html>

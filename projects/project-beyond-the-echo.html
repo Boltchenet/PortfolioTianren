@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photographer Portfolio</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/home.css">
+    <title>Beyond the Echo - Tianren Wang</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/project-beyond-echo.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -16,22 +16,34 @@
             <div class="header-content">
                 <div class="artist-name" id="artistName">Tianren Wang</div>
                 <nav class="hotbar-nav" id="hotbarNav">
-                    <a href="#projects" class="nav-item">Projects</a>
-                    <a href="about.html" class="nav-item">About</a>
-                    <a href="contact.html" class="nav-item">Contact</a>
-                    <a href="legal.html" class="nav-item">Legal Notice</a>
-                    <a href="privacy.html" class="nav-item">Privacy</a>
+                    <a href="../index.html#projects" class="nav-item">Projects</a>
+                    <a href="../about.html" class="nav-item">About</a>
+                    <a href="../contact.html" class="nav-item">Contact</a>
+                    <a href="../legal.html" class="nav-item">Legal</a>
+                    <a href="../privacy.html" class="nav-item">Privacy</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Projects section -->
-        <section class="projects-section" id="projects">
+        <section class="project-container">
             <div class="container">
-                <div class="projects-grid">
-                    <!-- Projects will be loaded dynamically by home.js -->
+                <div class="project-hero fade-in">
+                    <div class="project-cover">
+                        <img src="../assets/images/project-beyond-echo/9b6c56ed-6858-4c6d-b55f-45ea5f309197_rw_1920.png" alt="Beyond the Echo Project Cover">
+                    </div>
+                    <div class="project-info">
+                        <h1 class="project-title">Beyond the Echo</h1>
+                        <div class="project-year">2023</div>
+                        <div class="project-description">
+                            <p>Une exploration visuelle des installations artistiques à projections multiples, créant des dialogues entre abstraction et paysage, entre réalité et imagination. Cette série capture l'essence éphémère des projections sur surfaces architecturales, où différentes réalités se superposent et s'entremêlent.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid-container" id="grid-container">
+                    <!-- Images will be loaded dynamically by JavaScript -->
                 </div>
             </div>
         </section>
@@ -43,8 +55,8 @@
                 <p>© 2024 Tianren Wang. All rights reserved.</p>
             </div>
             <div class="footer-links">
-                <a href="legal.html">Legal Notice</a>
-                <a href="privacy.html">Privacy Policy</a>
+                <a href="../legal.html">Legal</a>
+                <a href="../privacy.html">Privacy Policy</a>
             </div>
             <div class="social-links">
                 <a href="#" class="social-link" aria-label="Instagram">
@@ -70,7 +82,20 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
-    <script src="js/home.js"></script>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close">×</button>
+        <div class="lightbox-content">
+            <img src="" alt="" class="lightbox-image" id="lightbox-image">
+        </div>
+        <div class="lightbox-nav">
+            <button class="lightbox-prev" aria-label="Previous image">‹</button>
+            <button class="lightbox-next" aria-label="Next image">›</button>
+        </div>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/project-beyond-echo.js"></script>
 </body>
 </html>

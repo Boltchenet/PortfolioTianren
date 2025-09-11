@@ -1,81 +1,35 @@
-// Liste des images dans l'ordre spÃ©cifiÃ©
+// Liste des images dans l'ordre spécifié
 const imageList = [
-    'solodate-title.jpeg',
-    'treehand.jpg',
-    'leavesriver.jpeg',
-    'treeroad.jpg',
-    'sucette.jpg',
-    'streetmirror.jpg',
-    'pissenlit.jpeg',
-    'benchleaves.jpg',
-    'stairs.jpg',
-    'tabledust.jpg',
-    'flaque.jpg',
-    'campfire.jpg',
-    'amazondelivery.jpg',
-    'leavestail.jpg',
-    'bouc.jpg',
-    'fesse.jpeg',
-    'roseflower.jpeg',
-    'ant.jpg',
-    'gadoue.jpeg',
-    'bleu.jpeg',
-    'grospissenlit.jpeg',
-    'spiderweb.jpg',
-    'windyhair.jpeg',
-    'pissenlitweb.jpeg',
-    'leavesback.jpg',
-    'watersmoothie.jpeg',
-    'plasticblackrose.jpeg',
-    'whatmedoc.jpg',
-    'instasky.jpg',
-    'bluebranch.jpg',
-    'electricblue.jpg',
-    'leavesonthefloor.jpg',
-    'wallight.jpg',
-    'roadcross.jpg',
-    'alienstick.jpg',
-    'blankarrowsign.jpg',
-    'lightyflower.jpg',
-    'fireworksleaves.jpg',
-    'skinfinger.jpg',
-    'lukcigarette.jpg',
-    'nightvisiontree.jpg',
-    'spongebobtree.jpg',
-    'tecceratcube.jpg',
-    'balancednature.jpg',
-    'sleepyflowers.jpg',
-    'crystalwater.jpg',
-    'thingonthewindow.jpg',
-    'clearwater.jpg',
-    'crackedegg.jpg',
-    'flyingduck.jpg',
-    'plancher.jpg',
-    'pigeon.jpg',
-    'savethatpigeon.jpg',
-    'dustypigeon.jpg',
-    'drowningpigeon.jpg'
+    '9b6c56ed-6858-4c6d-b55f-45ea5f309197_rw_1920.png',
+    'f2cc94d9-61cb-452f-8622-e1f52990108d_rw_1920.png',
+    '880f88f5-8da9-4429-bfb9-fd607d00a87f_rw_1920.png',
+    'a0eca1f0-e447-445b-a132-431c956fdd2a_rw_1920.png',
+    'e3d2e056-ef2d-47b1-8e99-ef9392e64747_rw_1920.png',
+    '5e320c92-30b2-4f78-b0b0-c811bf70429e_rw_1920.png',
+    '726e1c46-f08e-43ce-ab77-26608832eea8_rw_1920.png'
 ];
 
-// GÃ©nÃ©ration de la galerie avec des images carrÃ©es
+// Génération de la galerie
 function generateGallery() {
-    const squareGrid = document.getElementById('square-grid');
+    const gridContainer = document.getElementById('grid-container');
     
-    imageList.forEach((imageName, index) => {
+    // Commencer à partir de l'index 1 car l'index 0 est l'image de couverture
+    for (let i = 1; i < imageList.length; i++) {
+        const imageName = imageList[i];
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.05}s`;
+        gridItem.style.animationDelay = `${i * 0.05}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-solodate/${imageName}" alt="SoloDate ${imageName}" class="grid-image">
+            <img src="../assets/images/project-beyond-echo/${imageName}" alt="Beyond the Echo ${i}" class="grid-image">
         `;
         
         gridItem.addEventListener('click', () => {
-            openLightbox(index);
+            openLightbox(i);
         });
         
-        squareGrid.appendChild(gridItem);
-    });
+        gridContainer.appendChild(gridItem);
+    }
 }
 
 // Lightbox functionality
@@ -90,8 +44,8 @@ let currentImageIndex = 0;
 
 // Ouvrir la lightbox
 function openLightbox(index) {
-    lightboxImage.src = `../assets/images/project-solodate/${imageList[index]}`;
-    lightboxImage.alt = `SoloDate ${imageList[index]}`;
+    lightboxImage.src = `../assets/images/project-beyond-echo/${imageList[index]}`;
+    lightboxImage.alt = `Beyond the Echo ${index + 1}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -115,7 +69,7 @@ function showPrevImage() {
     openLightbox(currentImageIndex);
 }
 
-// Ã‰couteurs d'Ã©vÃ©nements
+// Écouteurs d'événements
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -140,5 +94,5 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Charger la galerie lorsque la page est prÃªte
+// Charger la galerie lorsque la page est prête
 document.addEventListener('DOMContentLoaded', generateGallery);
