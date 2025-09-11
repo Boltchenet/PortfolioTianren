@@ -1,8 +1,7 @@
-/* Styles spécifiques à la page de projet Interflows - Effet Jungle */
+/* Styles spécifiques à la page de projet Interflows - Design classique */
 .project-container {
     padding: 120px 0 60px;
     background-color: var(--bg-base);
-    overflow-x: hidden;
 }
 
 .project-hero {
@@ -21,8 +20,6 @@
     margin-bottom: var(--space-lg);
     overflow: hidden;
     position: relative;
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     background-color: #000;
 }
 
@@ -66,44 +63,37 @@
     margin: 0 auto;
 }
 
-/* Grille jungle - disposition organique et désordonnée */
-.jungle-grid {
+/* Grille classique et épurée */
+.classic-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(200px, auto);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
     padding: var(--space-md) 0;
-    position: relative;
 }
 
-.jungle-item {
+.grid-item {
     position: relative;
     cursor: pointer;
-    border-radius: 8px;
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     background-color: #000;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-    break-inside: avoid;
-    transform-origin: center;
 }
 
-.jungle-image {
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.grid-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: transform 0.7s ease;
 }
 
-.jungle-item:hover {
-    transform: translateY(-10px) scale(1.05) rotate(0deg) !important;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-}
-
-.jungle-item:hover .jungle-image {
-    transform: scale(1.08);
+.grid-item:hover .grid-image {
+    transform: scale(1.05);
 }
 
 /* Lightbox */
@@ -209,11 +199,11 @@
 @keyframes fadeIn {
     from { 
         opacity: 0; 
-        transform: translateY(40px) scale(0.9); 
+        transform: translateY(20px);
     }
     to { 
         opacity: 1; 
-        transform: translateY(0) scale(1); 
+        transform: translateY(0);
     }
 }
 
@@ -224,15 +214,15 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .jungle-grid {
-        grid-template-columns: repeat(8, 1fr);
+    .classic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 900px) {
-    .jungle-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 15px;
+    .classic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
     }
     
     .project-title {
@@ -261,16 +251,16 @@
         font-size: 1.1rem;
     }
     
-    .jungle-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
+    .classic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
     }
 }
 
 @media (max-width: 600px) {
-    .jungle-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+    .classic-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
     }
     
     .project-title {
