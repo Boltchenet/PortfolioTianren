@@ -1,4 +1,4 @@
-/* Styles spécifiques à la page de projet Lookbook Fashion */
+/* Styles spécifiques à la page de projet Lookbook Veil */
 .project-container {
     padding: 120px 0 60px;
     background-color: var(--bg-base);
@@ -13,10 +13,10 @@
 }
 
 .project-cover {
-    width: 60%;
-    max-width: 500px;
-    height: 80vh;
-    max-height: 800px;
+    width: 80%;
+    max-width: 800px;
+    height: 70vh;
+    max-height: 700px;
     margin-bottom: var(--space-lg);
     overflow: hidden;
     position: relative;
@@ -52,37 +52,37 @@
     font-weight: 300;
 }
 
-/* Vertical Grid Gallery - optimisée pour les images verticales */
-.vertical-grid {
+/* Square Grid Gallery - optimized for square images */
+.square-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-sm);
     padding: 0 var(--space-sm);
 }
 
-.vertical-item {
+.grid-item {
     position: relative;
     cursor: pointer;
     border-radius: 8px;
     overflow: hidden;
     transition: var(--transition);
     background-color: var(--accent-sage-dark);
-    aspect-ratio: 2/3;
+    aspect-ratio: 1/1;
 }
 
-.vertical-item:hover {
+.grid-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.vertical-image {
+.grid-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.vertical-item:hover .vertical-image {
+.grid-item:hover .grid-image {
     transform: scale(1.03);
 }
 
@@ -178,29 +178,25 @@
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .vertical-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    .square-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 }
 
 @media (max-width: 900px) {
-    .vertical-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    .square-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     }
     
     .project-title {
         font-size: 2.5rem;
     }
-    
-    .project-cover {
-        width: 70%;
-    }
 }
 
 @media (max-width: 600px) {
-    .vertical-grid {
+    .square-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: var(--space-sm);
+        gap: var(--space-xs);
     }
     
     .project-title {
@@ -208,7 +204,7 @@
     }
     
     .project-cover {
-        width: 85%;
-        height: 60vh;
+        width: 95%;
+        height: 50vh;
     }
 }

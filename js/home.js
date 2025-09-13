@@ -46,7 +46,7 @@ const projects = [
         year: "2024",
         image: "assets/images/home/lookbook-title.jpg",
         accentColor: "var(--accent-veil)",
-        slug: "lookbook",
+        slug: "lookbook-fashion",
         vertical: true
     },
     {
@@ -55,7 +55,7 @@ const projects = [
         year: "2023",
         image: "assets/images/home/fashion2024-title.png",
         accentColor: "var(--accent-concrete)",
-        slug: "lookbook2",
+        slug: "lookbook-spiral",
         vertical: true
     },
     {
@@ -64,7 +64,7 @@ const projects = [
         year: "2024",
         image: "assets/images/home/lookbook2-title.jpg",
         accentColor: "var(--accent-urban)",
-        slug: "lookbook3",
+        slug: "lookbook-veil",
         vertical: true
     }
 ];

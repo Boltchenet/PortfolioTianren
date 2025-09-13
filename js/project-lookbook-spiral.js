@@ -1,30 +1,29 @@
-// Liste des images du lookbook fashion
+// Liste des images dans l'ordre spécifié pour Lookbook Spiral
 const imageList = [
-  'c4fef1fe-531c-487a-b7eb-08db24d0fd55_rw_1920.jpg',
-  'd3a7e260-26c8-496f-9f3b-2f333b1a649f_rw_1920.jpg',
-  'b7b502c9-fe37-4d83-bc82-77ca0d0e800c_rw_1920.jpg',
-  '6ec383bf-f475-4c32-9186-136e572e42c8_rw_1920.jpg',
-  'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
+  '0212ddbc-56c5-40dc-8e61-7458acaa72ec_rw_1920.png',
+  '2b6c9bb5-6921-4eb8-9c69-5322f81124a2_rw_1920.jpg',
+  '7ed5baa4-61ce-4f72-ac05-5c14e1acedc0_rw_1920.png',
+  '42deacfe-6d14-4e4f-9147-61393866db0a_rw_1920.jpg',
+  'c3888e54-9fe1-4144-a3e4-1167b6e7889a_rw_1920.png'
 ];
-
-// Génération de la galerie avec des images verticales
+// Génération de la galerie avec des images carrées
 function generateGallery() {
-    const verticalGrid = document.getElementById('vertical-grid');
+    const squareGrid = document.getElementById('square-grid');
     
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
-        gridItem.className = 'vertical-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.1}s`;
+        gridItem.className = 'grid-item fade-in';
+        gridItem.style.animationDelay = `${index * 0.05}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-lookbook1/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
+            <img src="../assets/images/project-lookbook-spiral/${imageName}" alt="Lookbook Spiral ${imageName}" class="grid-image">
         `;
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
         });
         
-        verticalGrid.appendChild(gridItem);
+        squareGrid.appendChild(gridItem);
     });
 }
 
@@ -40,8 +39,8 @@ let currentImageIndex = 0;
 
 // Ouvrir la lightbox
 function openLightbox(index) {
-    lightboxImage.src = `../assets/images/project-lookbook1/${imageList[index]}`;
-    lightboxImage.alt = `Lookbook Fashion ${index + 1}`;
+    lightboxImage.src = `../assets/images/project-lookbook-spiral/${imageList[index]}`;
+    lightboxImage.alt = `Lookbook Spiral ${imageList[index]}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';

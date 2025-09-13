@@ -1,30 +1,31 @@
-// Liste des images du lookbook fashion
+// Liste des images pour Lookbook Veil (à adapter avec vos noms d'images réels)
 const imageList = [
-  'c4fef1fe-531c-487a-b7eb-08db24d0fd55_rw_1920.jpg',
-  'd3a7e260-26c8-496f-9f3b-2f333b1a649f_rw_1920.jpg',
-  'b7b502c9-fe37-4d83-bc82-77ca0d0e800c_rw_1920.jpg',
-  '6ec383bf-f475-4c32-9186-136e572e42c8_rw_1920.jpg',
-  'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
+  'a5f5ddf3-00de-454e-890e-eacae5923a8a_rw_1920.jpg',
+  'd8cd2d1c-2e4e-43ca-bc28-6286203e7f63_rw_1920.jpg',
+  '12aab275-87de-47cc-970d-168b9ebf7f4b_rw_1920.jpg',
+  '87fddcdf-c2cf-4271-948a-7ffdc9b49be9_rw_1920.jpg',
+  'e32a7f71-8643-4bf2-a660-48483fddde31_rw_1920.jpg',
+  'e3aad9c6-e880-4512-8b08-8de0e4d53292_rw_1920.jpg'
 ];
 
-// Génération de la galerie avec des images verticales
+// Génération de la galerie avec des images carrées
 function generateGallery() {
-    const verticalGrid = document.getElementById('vertical-grid');
+    const squareGrid = document.getElementById('square-grid');
     
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
-        gridItem.className = 'vertical-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.1}s`;
+        gridItem.className = 'grid-item fade-in';
+        gridItem.style.animationDelay = `${index * 0.05}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-lookbook1/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
+            <img src="../assets/images/project-lookbookveil/${imageName}" alt="Lookbook Veil ${imageName}" class="grid-image">
         `;
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
         });
         
-        verticalGrid.appendChild(gridItem);
+        squareGrid.appendChild(gridItem);
     });
 }
 
@@ -40,8 +41,8 @@ let currentImageIndex = 0;
 
 // Ouvrir la lightbox
 function openLightbox(index) {
-    lightboxImage.src = `../assets/images/project-lookbook1/${imageList[index]}`;
-    lightboxImage.alt = `Lookbook Fashion ${index + 1}`;
+    lightboxImage.src = `../assets/images/project-lookbookveil/${imageList[index]}`;
+    lightboxImage.alt = `Lookbook Veil ${imageList[index]}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
