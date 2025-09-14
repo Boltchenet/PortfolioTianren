@@ -1,4 +1,4 @@
-// Liste des images pour Lookbook Veil (à adapter avec vos noms d'images réels)
+// Liste des images pour Lookbook Veil (Ã  adapter avec vos noms d'images rÃ©els)
 const imageList = [
   'a5f5ddf3-00de-454e-890e-eacae5923a8a_rw_1920.jpg',
   'd8cd2d1c-2e4e-43ca-bc28-6286203e7f63_rw_1920.jpg',
@@ -8,7 +8,7 @@ const imageList = [
   'e3aad9c6-e880-4512-8b08-8de0e4d53292_rw_1920.jpg'
 ];
 
-// Génération de la galerie avec des images carrées
+// GÃ©nÃ©ration de la galerie avec des images carrÃ©es
 function generateGallery() {
     const squareGrid = document.getElementById('square-grid');
     
@@ -18,7 +18,7 @@ function generateGallery() {
         gridItem.style.animationDelay = `${index * 0.05}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-lookbookveil/${imageName}" alt="Lookbook Veil ${imageName}" class="grid-image">
+            <img src="../assets/images/lookbook-veil/${imageName}" alt="Lookbook Veil ${imageName}" class="grid-image">
         `;
         
         gridItem.addEventListener('click', () => {
@@ -66,7 +66,7 @@ function showPrevImage() {
     openLightbox(currentImageIndex);
 }
 
-// Écouteurs d'événements
+// Ã‰couteurs d'Ã©vÃ©nements
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -91,5 +91,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Charger la galerie lorsque la page est prête
+// Charger la galerie lorsque la page est prÃªte
+
 document.addEventListener('DOMContentLoaded', generateGallery);
