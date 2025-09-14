@@ -1,12 +1,12 @@
 // Liste des images du lookbook fashion
 const imageList = [
-  'c4fef1fe-531c-487a-b7eb-08db24d0fd55_rw_1920.jpg',
-  'd3a7e260-26c8-496f-9f3b-2f333b1a649f_rw_1920.jpg',
-  'b7b502c9-fe37-4d83-bc82-77ca0d0e800c_rw_1920.jpg',
-  '6ec383bf-f475-4c32-9186-136e572e42c8_rw_1920.jpg',
-  'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
+  'a5f5ddf3-00de-454e-890e-eacae5923a8a_rw_1920.jpg',
+  'd8cd2d1c-2e4e-43ca-bc28-6286203e7f63_rw_1920.jpg',
+  '12aab275-87de-47cc-970d-168b9ebf7f4b_rw_1920.jpg',
+  '87fddcdf-c2cf-4271-948a-7ffdc9b49be9_rw_1920.jpg',
+  'e32a7f71-8643-4bf2-a660-48483fddde31_rw_1920.jpg',
+  'e3aad9c6-e880-4512-8b08-8de0e4d53292_rw_1920.jpg'
 ];
-
 // Génération de la galerie avec des images verticales
 function generateGallery() {
     const verticalGrid = document.getElementById('vertical-grid');
@@ -93,4 +93,5 @@ document.addEventListener('keydown', (e) => {
 // Charger la galerie lorsque la page est prête
 
 document.addEventListener('DOMContentLoaded', generateGallery);
+
 
