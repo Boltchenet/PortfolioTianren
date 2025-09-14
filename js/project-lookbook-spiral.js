@@ -1,4 +1,4 @@
-// Liste des images dans l'ordre spécifié pour Lookbook Spiral
+// Liste des images dans l'ordre spÃ©cifiÃ© pour Lookbook Spiral
 const imageList = [
   '0212ddbc-56c5-40dc-8e61-7458acaa72ec_rw_1920.png',
   '2b6c9bb5-6921-4eb8-9c69-5322f81124a2_rw_1920.jpg',
@@ -6,7 +6,7 @@ const imageList = [
   '42deacfe-6d14-4e4f-9147-61393866db0a_rw_1920.jpg',
   'c3888e54-9fe1-4144-a3e4-1167b6e7889a_rw_1920.png'
 ];
-// Génération de la galerie avec des images carrées
+// GÃ©nÃ©ration de la galerie avec des images carrÃ©es
 function generateGallery() {
     const squareGrid = document.getElementById('square-grid');
     
@@ -16,7 +16,7 @@ function generateGallery() {
         gridItem.style.animationDelay = `${index * 0.05}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-lookbook-spiral/${imageName}" alt="Lookbook Spiral ${imageName}" class="grid-image">
+            <img src="../assets/images/lookbook-spiral/${imageName}" alt="Lookbook Spiral ${imageName}" class="grid-image">
         `;
         
         gridItem.addEventListener('click', () => {
@@ -64,7 +64,7 @@ function showPrevImage() {
     openLightbox(currentImageIndex);
 }
 
-// Écouteurs d'événements
+// Ã‰couteurs d'Ã©vÃ©nements
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -89,5 +89,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Charger la galerie lorsque la page est prête
+// Charger la galerie lorsque la page est prÃªte
+
 document.addEventListener('DOMContentLoaded', generateGallery);
