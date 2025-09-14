@@ -17,7 +17,7 @@ function generateGallery() {
         gridItem.style.animationDelay = `${index * 0.1}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-fashion/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
+            <img src="../assets/images/lookbook-veil/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
         `;
         
         gridItem.addEventListener('click', () => {
@@ -93,3 +93,4 @@ document.addEventListener('keydown', (e) => {
 // Charger la galerie lorsque la page est prête
 
 document.addEventListener('DOMContentLoaded', generateGallery);
+
