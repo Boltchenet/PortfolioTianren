@@ -39,7 +39,7 @@ let currentImageIndex = 0;
 
 // Ouvrir la lightbox
 function openLightbox(index) {
-    lightboxImage.src = `../assets/images/project-lookbook-spiral/${imageList[index]}`;
+    lightboxImage.src = `../assets/images/lookbook-spiral/${imageList[index]}`;
     lightboxImage.alt = `Lookbook Spiral ${imageList[index]}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
@@ -92,3 +92,4 @@ document.addEventListener('keydown', (e) => {
 // Charger la galerie lorsque la page est prête
 
 document.addEventListener('DOMContentLoaded', generateGallery);
+
