@@ -7,7 +7,7 @@ const imageList = [
   'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
 ];
 
-// Génération de la galerie avec des images verticales
+// GÃ©nÃ©ration de la galerie avec des images verticales
 function generateGallery() {
     const verticalGrid = document.getElementById('vertical-grid');
     
@@ -17,7 +17,7 @@ function generateGallery() {
         gridItem.style.animationDelay = `${index * 0.1}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-lookbook1/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
+            <img src="../assets/images/project-fashion/${imageName}" alt="Lookbook Fashion ${index + 1}" class="vertical-image">
         `;
         
         gridItem.addEventListener('click', () => {
@@ -65,7 +65,7 @@ function showPrevImage() {
     openLightbox(currentImageIndex);
 }
 
-// Écouteurs d'événements
+// Ã‰couteurs d'Ã©vÃ©nements
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -90,5 +90,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Charger la galerie lorsque la page est prête
+// Charger la galerie lorsque la page est prÃªte
+
 document.addEventListener('DOMContentLoaded', generateGallery);
