@@ -1,0 +1,128 @@
+/* About Page Styles */
+.about-section {
+    padding: calc(var(--space-xl) + 100px) 0 var(--space-xl);
+    background-color: var(--bg-base);
+    min-height: 100vh;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.about-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+.about-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-dark);
+}
+
+.description p {
+    margin-bottom: var(--space-md);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text);
+}
+
+.social-profiles {
+    margin-top: var(--space-lg);
+}
+
+.social-profiles h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-dark);
+}
+
+.social-links-about {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.social-links-about .social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    color: var(--text);
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.social-links-about .social-link:hover {
+    background-color: var(--text-dark);
+    color: white;
+    transform: translateX(5px);
+}
+
+.social-links-about .social-link svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .about-content {
+        gap: var(--space-lg);
+    }
+    
+    .about-text h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: calc(var(--space-lg) + 80px) 0 var(--space-lg);
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .about-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .description p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text h1 {
+        font-size: 2rem;
+    }
+    
+    .social-links-about .social-link {
+        padding: 0.6rem 0.8rem;
+    }
+    
+    .social-links-about .social-link span {
+        font-size: 0.9rem;
+    }
+}
