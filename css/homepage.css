@@ -235,6 +235,127 @@ html, body {
     display: none;
 }
 
+/* Nouveau header mobile pour la homepage */
+.homepage-mobile-only {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--overlay);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-mobile-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.homepage-mobile-artist-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-mobile-artist-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.homepage-mobile-tagline {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.homepage-hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+    z-index: 1001;
+}
+
+.homepage-hamburger-menu span {
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-dark);
+    transition: var(--transition);
+    border-radius: 3px;
+}
+
+.homepage-hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.homepage-hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.homepage-hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.homepage-mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--overlay-light);
+    backdrop-filter: blur(15px);
+    padding: 1rem 0;
+    flex-direction: column;
+    gap: 0.5rem;
+    display: none;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.homepage-mobile-nav.active {
+    display: flex;
+}
+
+.homepage-nav-item {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+}
+
+.homepage-nav-item:before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.homepage-nav-item:last-child:before {
+    display: none;
+}
+
+.homepage-nav-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .left-column {
@@ -284,112 +405,31 @@ html, body {
         padding: var(--space-md);
         min-height: auto;
         justify-content: flex-start; /* Réinitialiser pour mobile */
+        display: none; /* Cacher la colonne de gauche en mobile */
     }
     
     .right-column {
-        height: 60vh;
+        height: 100vh;
+        order: -1; /* Mettre le carrousel en premier */
     }
     
     .carousel-container {
-        height: 60vh;
+        height: 100vh;
     }
     
     .mobile-only {
-        display: block;
+        display: none; /* Cacher le header mobile original */
     }
     
-    /* Header mobile */
-    #mobile-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: var(--space-sm) 0;
-        z-index: 100;
-        background-color: var(--overlay);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    .homepage-mobile-only {
+        display: block; /* Afficher le nouveau header mobile */
     }
     
-    .header-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .hamburger-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 24px;
-        height: 18px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-    }
-    
-    .hamburger-menu span {
-        height: 2px;
-        width: 100%;
-        background-color: var(--text-dark);
-        transition: var(--transition);
-    }
-    
-    .hamburger-menu.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-    
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .hamburger-menu.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-    
-    .mobile-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--overlay-light);
-        backdrop-filter: blur(10px);
-        padding: var(--space-sm);
-        flex-direction: column;
-        gap: 0.5rem;
-        display: none;
-        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-        border-top: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .mobile-nav.active {
-        display: flex;
-    }
-    
-    .mobile-nav .nav-item {
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
-        transition: var(--transition);
-    }
-    
-    .mobile-nav .nav-item:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-    
-    /* Ajustements pour mobile */
-    .artist-info {
-        margin-top: 60px; /* Espace pour le header fixe */
-        margin-bottom: var(--space-lg);
-    }
-    
-    .project-categories {
-        margin-left: 0;
-    }
-    
-    .footer-left {
-        margin-top: var(--space-xl); /* Ajouter de l'espace au-dessus du footer en mobile */
-        justify-content: center; /* Centrer les icônes sociales en mobile */
+    /* Ajustements pour le carrousel en mobile */
+    .carousel-slide img {
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: cover;
     }
 }
 
@@ -416,5 +456,18 @@ html, body {
     
     .social-links-left {
         margin-top: var(--space-sm);
+    }
+    
+    .homepage-mobile-artist-name {
+        font-size: 1.3rem;
+    }
+    
+    .homepage-mobile-tagline {
+        font-size: 0.8rem;
+    }
+    
+    .homepage-nav-item {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.5rem;
     }
 }

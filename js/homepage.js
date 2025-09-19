@@ -58,7 +58,7 @@ function initCarousel() {
     setInterval(nextSlide, 4000);
 }
 
-// Gestion du menu mobile
+// Gestion du menu mobile original
 function initMobileMenu() {
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const mobileNav = document.getElementById('mobileNav');
@@ -71,8 +71,43 @@ function initMobileMenu() {
     }
 }
 
+// Gestion du nouveau menu mobile pour la homepage
+function initHomepageMobileMenu() {
+    const hamburgerMenu = document.getElementById('homepageHamburgerMenu');
+    const mobileNav = document.getElementById('homepageMobileNav');
+    
+    if (hamburgerMenu && mobileNav) {
+        hamburgerMenu.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+        
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                e.target !== hamburgerMenu) {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+    }
+}
+
 // Initialisation lorsque le DOM est chargé
 document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     initMobileMenu();
+    initHomepageMobileMenu();
+    
+    // Pour mobile: centrer le carrousel
+    if (window.innerWidth <= 768) {
+        const carouselSlides = document.querySelector('.carousel-slides');
+        if (carouselSlides) {
+            carouselSlides.style.display = 'flex';
+            carouselSlides.style.alignItems = 'center';
+            carouselSlides.style.justifyContent = 'center';
+        }
+    }
 });
