@@ -160,7 +160,7 @@
 .lightbox-nav {
     position: absolute;
     top: 50%;
-    width: ?100%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
@@ -198,6 +198,43 @@
     opacity: 0.8;
 }
 
+/* Footer simplifié */
+footer {
+    background-color: var(--bg-base);
+    padding: var(--space-md) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-dark);
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
 /* Animation */
 @keyframes fadeIn {
     from { 
@@ -222,7 +259,7 @@
     }
 }
 
-@media (max-width: 900?px) {
+@media (max-width: 900px) {
     .proportional-grid {
         grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
         gap: 18px;
@@ -266,5 +303,14 @@
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
+    }
+    
+    .social-links {
+        gap: var(--space-sm);
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
     }
 }

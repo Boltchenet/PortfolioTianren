@@ -1,6 +1,6 @@
-/* Styles spécifiques à la page de projet Lookbook Fashion */
+/* Styles sp cifiques   la page de projet Lookbook Fashion */
 .project-container {
-    padding: 100px 0 40px; /* Augmentation du padding-top de 80px à 100px */
+    padding: 100px 0 40px; /* Augmentation du padding-top de 80px   100px */
     background-color: var(--bg-base);
 }
 
@@ -16,7 +16,7 @@
 .project-info {
     max-width: 600px;
     margin-bottom: var(--space-xl);
-    padding-top: 20px; /* Ajout d'un padding supplémentaire */
+    padding-top: 20px; /* Ajout d'un padding suppl mentaire */
 }
 
 .project-title {
@@ -32,7 +32,7 @@
     font-weight: 300;
 }
 
-/* Vertical Grid Gallery - optimisée pour les images verticales */
+/* Vertical Grid Gallery - optimis e pour les images verticales */
 .vertical-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -192,6 +192,6 @@
     }
     
     .project-info {
-        padding-top: 15px; /* Réduction du padding sur mobile */
+        padding-top: 15px; /* R duction du padding sur mobile */
     }
 }

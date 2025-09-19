@@ -273,3 +273,56 @@ html {
         font-size: 0.8rem;
     }
 }
+
+/* ... (le reste du fichier reste inchangé) ... */
+
+/* Responsive */
+@media (max-width: 768px) {
+    :root {
+        --space-md: 1.5rem;
+        --space-lg: 2.5rem;
+        --space-xl: 4rem;
+    }
+    
+    .hotbar-nav {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+        padding: var(--space-sm);
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .footer-links, .social-links {
+        justify-content: center;
+    }
+    
+    /* Ajout pour la homepage mobile */
+    .homepage-mobile-only {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .artist-name {
+        font-size: 1.5rem;
+    }
+    
+    .nav-item {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Ajustements supplémentaires pour mobile */
+    .homepage-mobile-artist-name {
+        font-size: 1.3rem;
+    }
+    
+    .homepage-mobile-tagline {
+        font-size: 0.8rem;
+    }
+}

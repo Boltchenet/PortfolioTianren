@@ -81,6 +81,13 @@ function initHomepageMobileMenu() {
             e.stopPropagation();
             hamburgerMenu.classList.toggle('active');
             mobileNav.classList.toggle('active');
+            
+            // Empêcher le défilement quand le menu est ouvert
+            if (mobileNav.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
         });
         
         // Fermer le menu en cliquant à l'extérieur
@@ -90,8 +97,53 @@ function initHomepageMobileMenu() {
                 e.target !== hamburgerMenu) {
                 hamburgerMenu.classList.remove('active');
                 mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
             }
         });
+        
+        // Fermer le menu en cliquant sur un lien
+        mobileNav.querySelectorAll('.homepage-nav-item').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+    }
+}
+
+// Ajuster la hauteur du carrousel pour mobile
+function adjustCarouselForMobile() {
+    if (window.innerWidth <= 768) {
+        const carouselContainer = document.querySelector('.carousel-container');
+        const carouselSlides = document.querySelector('.carousel-slides');
+        
+        if (carouselContainer && carouselSlides) {
+            // Ajuster la hauteur pour s'adapter à l'écran mobile
+            const windowHeight = window.innerHeight;
+            const headerHeight = document.getElementById('homepage-mobile-header').offsetHeight;
+            const carouselHeight = windowHeight - headerHeight;
+            
+            carouselContainer.style.height = `${carouselHeight}px`;
+            carouselSlides.style.height = `${carouselHeight}px`;
+            
+            // Centrer les images
+            carouselSlides.style.display = 'flex';
+            carouselSlides.style.alignItems = 'center';
+            carouselSlides.style.justifyContent = 'center';
+            
+            document.querySelectorAll('.carousel-slide').forEach(slide => {
+                slide.style.display = 'flex';
+                slide.style.alignItems = 'center';
+                slide.style.justifyContent = 'center';
+            });
+            
+            document.querySelectorAll('.carousel-slide img').forEach(img => {
+                img.style.maxHeight = '90%';
+                img.style.maxWidth = '95%';
+                img.style.objectFit = 'contain';
+            });
+        }
     }
 }
 
@@ -100,14 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initCarousel();
     initMobileMenu();
     initHomepageMobileMenu();
+    adjustCarouselForMobile();
     
-    // Pour mobile: centrer le carrousel
-    if (window.innerWidth <= 768) {
-        const carouselSlides = document.querySelector('.carousel-slides');
-        if (carouselSlides) {
-            carouselSlides.style.display = 'flex';
-            carouselSlides.style.alignItems = 'center';
-            carouselSlides.style.justifyContent = 'center';
-        }
-    }
+    // Réajuster lors du redimensionnement
+    window.addEventListener('resize', adjustCarouselForMobile);
 });
+
+// Empêcher le défilement par défaut sur mobile
+document.addEventListener('touchmove', function(e) {
+    if (document.getElementById('homepageMobileNav').classList.contains('active')) {
+        e.preventDefault();
+    }
+}, { passive: false });

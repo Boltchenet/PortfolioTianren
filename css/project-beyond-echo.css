@@ -1,10 +1,12 @@
-/* Styles spécifiques à la page de projet Beyond the Echo */
+/* Styles spécifiques r la page de projet Beyond the Echo */
 .project-container {
-    padding: 100px 0 60px;
+    padding: 100px 0 80px; /* Augmenter le padding en bas pour faire de la place pour les icônes */
     background-color: var(--bg-base);
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: calc(100vh - 80px); /* S'assurer que le contenu prend au moins toute la hauteur */
+    box-sizing: border-box;
 }
 
 .project-info {
@@ -183,6 +185,48 @@
     opacity: 0.8;
 }
 
+/* Nouveau footer simplifié - centré en bas */
+.simple-social-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background: linear-gradient(to top, var(--bg-base) 0%, transparent 100%);
+}
+
+.simple-social-footer .social-links {
+    display: flex;
+    gap: 15px;
+    padding: 10px 20px;
+    background-color: rgba(var(--bg-base-rgb), 0.8);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.simple-social-footer .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-base);
+    color: var(--text);
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.simple-social-footer .social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: var(--accent);
+}
+
 /* Animation simplifiée */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -213,7 +257,7 @@
 
 @media (max-width: 768px) {
     .project-container {
-        padding: 80px 0 40px;
+        padding: 80px 0 60px;
     }
     
     .project-title {
@@ -231,6 +275,19 @@
     .grid-container {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: var(--space-sm);
+    }
+    
+    .simple-social-footer {
+        padding: 15px 0;
+    }
+    
+    .simple-social-footer .social-link {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .simple-social-footer .social-links {
+        gap: 12px;
     }
 }
 
@@ -252,5 +309,31 @@
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
+    }
+    
+    .simple-social-footer {
+        padding: 10px 0;
+    }
+    
+    .simple-social-footer .social-link {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .simple-social-footer .social-links {
+        gap: 10px;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .simple-social-footer .social-links {
+        gap: 8px;
+        padding: 6px 12px;
+    }
+    
+    .simple-social-footer .social-link {
+        width: 30px;
+        height: 30px;
     }
 }
