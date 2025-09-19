@@ -14,7 +14,7 @@
 }
 
 .project-info {
-    max-width: 600px;
+    max-width: ?600px;
     margin-bottom: var(--space-xl);
     padding-top: 20px;
 }
@@ -32,7 +32,7 @@
     font-weight: 300;
 }
 
-/* Vertical Grid Gallery - optimisée pour les images verticales (même format que Lookbook Fashion) */
+/* Vertical Grid Gallery */
 .vertical-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -156,6 +156,43 @@
     animation: fadeIn 0.8s ease forwards;
 }
 
+/* Footer simplifié comme Beyond the Echo */
+footer {
+    background-color: var(--bg-base);
+    padding: var(--space-md) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-dark);
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
 /* Responsive */
 @media (max-width: 1200px) {
     .vertical-grid {
@@ -193,5 +230,14 @@
     
     .project-info {
         padding-top: 15px;
+    }
+    
+    .social-links {
+        gap: var(--space-sm);
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
     }
 }

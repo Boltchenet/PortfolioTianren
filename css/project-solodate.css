@@ -1,52 +1,38 @@
 /* Styles spécifiques à la page de projet SoloDate */
 .project-container {
-    padding: 80px 0 40px;
+    padding: 100px 0 40px;
     background-color: var(--bg-base);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .project-info {
-    max-width: 600px;
-    margin: 0 auto var(--space-lg);
     text-align: center;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 0 var(--space-sm);
+    margin-bottom: var(--space-xl);
+    padding: 0 var(--space-md);
+    padding-top: 20px;
 }
 
 .project-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin: 0 auto var(--space-xs);
+    font-size: 2.8rem;
+    margin-bottom: var(--space-xs);
     color: var(--text-dark);
-    text-align: center;
-    width: 100%;
 }
 
 .project-year {
     font-size: 1.2rem;
     color: var(--muted);
     font-weight: 300;
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
 }
 
-/* Square Grid Gallery - optimized for square images */
+/* Square Grid Gallery - optimisée pour les images carrées */
 .square-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: var(--space-sm);
+    gap: var(--space-md);
     padding: 0 var(--space-sm);
-    width: 100%;
 }
 
-.grid-item {
+.square-item {
     position: relative;
     cursor: pointer;
     border-radius: 8px;
@@ -56,19 +42,19 @@
     aspect-ratio: 1/1;
 }
 
-.grid-item:hover {
+.square-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-.grid-image {
+.square-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
 }
 
-.grid-item:hover .grid-image {
+.square-item:hover .square-image {
     transform: scale(1.03);
 }
 
@@ -86,7 +72,7 @@
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
 }
 
 .lightbox.open {
@@ -151,15 +137,52 @@
     font-size: 1rem;
 }
 
-/* Animation simplifiée */
+/* Animation */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
     opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Footer simplifié comme Beyond the Echo */
+footer {
+    background-color: var(--bg-base);
+    padding: var(--space-md) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-dark);
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    color: var(--text);
 }
 
 /* Responsive */
@@ -175,17 +198,38 @@
     }
     
     .project-title {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+    }
+    
+    .project-container {
+        padding: 90px 0 30px;
     }
 }
 
 @media (max-width: 600px) {
     .square-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: var(--space-xs);
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-sm);
     }
     
     .project-title {
         font-size: 2rem;
+    }
+    
+    .project-container {
+        padding: 80px 0 30px;
+    }
+    
+    .project-info {
+        padding-top: 15px;
+    }
+    
+    .social-links {
+        gap: var(--space-sm);
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
     }
 }
