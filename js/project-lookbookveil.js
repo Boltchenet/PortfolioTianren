@@ -1,4 +1,4 @@
-// Liste des images pour Lookbook Veil (à adapter avec vos noms d'images réels)
+// Liste des images pour Lookbook Veil
 const imageList = [
   'c4fef1fe-531c-487a-b7eb-08db24d0fd55_rw_1920.jpg',
   'd3a7e260-26c8-496f-9f3b-2f333b1a649f_rw_1920.jpg',
@@ -7,24 +7,24 @@ const imageList = [
   'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
 ];
 
-// Génération de la galerie avec des images carrées
+// Génération de la galerie avec des images verticales (même format que Lookbook Fashion)
 function generateGallery() {
-    const squareGrid = document.getElementById('square-grid');
+    const verticalGrid = document.getElementById('vertical-grid');
     
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.05}s`;
+        gridItem.className = 'vertical-item fade-in';
+        gridItem.style.animationDelay = `${index * 0.1}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/lookbook-fashion/${imageName}" alt="Lookbook Veil ${imageName}" class="grid-image">
+            <img src="../assets/images/lookbook-fashion/${imageName}" alt="Lookbook Veil ${index + 1}" class="vertical-image">
         `;
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
         });
         
-        squareGrid.appendChild(gridItem);
+        verticalGrid.appendChild(gridItem);
     });
 }
 
@@ -41,7 +41,7 @@ let currentImageIndex = 0;
 // Ouvrir la lightbox
 function openLightbox(index) {
     lightboxImage.src = `../assets/images/lookbook-fashion/${imageList[index]}`;
-    lightboxImage.alt = `Lookbook Veil ${imageList[index]}`;
+    lightboxImage.alt = `Lookbook Veil ${index + 1}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -91,8 +91,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Charger la galerie lorsque la page est prête
-
 document.addEventListener('DOMContentLoaded', generateGallery);
-
-
-

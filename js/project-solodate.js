@@ -1,6 +1,5 @@
 // Liste des images dans l'ordre spécifié
 const imageList = [
-    'solodate-title.jpeg',
     'treehand.jpg',
     'leavesriver.jpeg',
     'treeroad.jpg',
@@ -64,10 +63,10 @@ function generateGallery() {
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.05}s`;
+        gridItem.style.animationDelay = `${index * 0.03}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-solodate/${imageName}" alt="SoloDate ${imageName}" class="grid-image">
+            <img src="../assets/images/project-solodate/${imageName}" alt="SoloDate ${imageName}" class="grid-image" loading="lazy">
         `;
         
         gridItem.addEventListener('click', () => {

@@ -7,6 +7,7 @@ const imageList = [
   'e32a7f71-8643-4bf2-a660-48483fddde31_rw_1920.jpg',
   'e3aad9c6-e880-4512-8b08-8de0e4d53292_rw_1920.jpg'
 ];
+
 // Génération de la galerie avec des images verticales
 function generateGallery() {
     const verticalGrid = document.getElementById('vertical-grid');
@@ -91,8 +92,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Charger la galerie lorsque la page est prête
-
 document.addEventListener('DOMContentLoaded', generateGallery);
-
-
-

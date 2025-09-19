@@ -1,10 +1,13 @@
-// Liste des images pour le projet Furniture avec vos noms d'images
+// Liste des images pour le projet Furniture 2025
 const imageList = [
-    'a4d8cac6-b419-47ed-8984-406ea3af99cd_rw_1920.jpg',
-    '67f34ac5-9549-4f68-92c5-d2a13e10285e_rw_1920.jpg',
-    '8199461a-4730-4671-822a-eb6dd25bcff6_rw_1920.jpg',
-    '1c6b3218-bf5f-48ff-9176-deb9e948b01e_rw_1920.jpg',
-    '740cc6f6-a1ab-4aec-a0d0-200b8ba4140c_rw_1920.jpg'
+    'd4b41a37-2f5a-44f6-89ad-d9fd26f10ae6_rw_1920.jpg',
+    '33fad39b-e546-4cd2-b695-6e3463faca08_rw_1920.jpg',
+    'af223f26-8cdb-4bc9-afad-ba9824064bbe_rw_1920.jpg',
+    '3adc9b68-2b4e-480c-8f76-8efceb37ae4c_rw_1920.jpg',
+    'fc8903f2-19b5-40f2-9c5b-f9ced80cdc47_rw_1920.jpg',
+    'e2773b15-fd1b-4424-89e4-b37147638447_rw_1920.jpg',
+    '7d3ed3e6-6104-4608-8066-36c53c743e26_rw_1920.jpg',
+    'd0050001-74e5-4641-a84b-a98db25ec9bd_rw_1920.jpg'
 ];
 
 // Génération de la galerie avec cadres proportionnels
@@ -25,7 +28,7 @@ function generateGallery() {
         // Créer l'élément image
         const image = document.createElement('img');
         image.className = 'proportional-image';
-        image.src = `../assets/images/project-furniture/${imageName}`;
+        image.src = `../assets/images/furniture-chair/${imageName}`;
         image.alt = `Furniture design ${i+1}`;
         image.loading = 'lazy';
         
@@ -52,7 +55,7 @@ function openLightbox(index) {
     const lightboxCounter = document.getElementById('lightbox-counter');
     
     // Mettre à jour l'image et le compteur
-    lightboxImage.src = `../assets/images/project-furniture/${imageList[index]}`;
+    lightboxImage.src = `../assets/images/furniture-chair/${imageList[index]}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     
     // Ouvrir la lightbox

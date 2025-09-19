@@ -38,7 +38,7 @@ const projects = [
         year: "2025",
         image: "assets/images/home/furniture2-title.jpg",
         accentColor: "var(--accent-leather)",
-        slug: "furniture2"
+        slug: "furniture-2025"
     },
     {
         id: 6,

@@ -6,24 +6,25 @@ const imageList = [
   '42deacfe-6d14-4e4f-9147-61393866db0a_rw_1920.jpg',
   'c3888e54-9fe1-4144-a3e4-1167b6e7889a_rw_1920.png'
 ];
-// Génération de la galerie avec des images carrées
+
+// Génération de la galerie avec des images verticales (même format que Lookbook Fashion)
 function generateGallery() {
-    const squareGrid = document.getElementById('square-grid');
+    const verticalGrid = document.getElementById('vertical-grid');
     
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
-        gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.05}s`;
+        gridItem.className = 'vertical-item fade-in';
+        gridItem.style.animationDelay = `${index * 0.1}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/lookbook-spiral/${imageName}" alt="Lookbook Spiral ${imageName}" class="grid-image">
+            <img src="../assets/images/lookbook-spiral/${imageName}" alt="Lookbook Spiral ${index + 1}" class="vertical-image">
         `;
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
         });
         
-        squareGrid.appendChild(gridItem);
+        verticalGrid.appendChild(gridItem);
     });
 }
 
@@ -40,7 +41,7 @@ let currentImageIndex = 0;
 // Ouvrir la lightbox
 function openLightbox(index) {
     lightboxImage.src = `../assets/images/lookbook-spiral/${imageList[index]}`;
-    lightboxImage.alt = `Lookbook Spiral ${imageList[index]}`;
+    lightboxImage.alt = `Lookbook Spiral ${index + 1}`;
     lightboxCounter.textContent = `${index + 1} / ${imageList.length}`;
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -90,6 +91,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Charger la galerie lorsque la page est prête
-
 document.addEventListener('DOMContentLoaded', generateGallery);
-

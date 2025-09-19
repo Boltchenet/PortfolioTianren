@@ -12,9 +12,9 @@
     --transition: all 0.2s ease;
 }
 
-/* Styles spécifiques à la page de projet Interflows - Design classique amélioré */
+/* Styles sp�cifiques � la page de projet Furniture 2025 - Cadres proportionnels */
 .project-container {
-    padding: 100px 0 50px;
+    padding: 120px 0 60px;
     background-color: var(--bg-base);
 }
 
@@ -35,61 +35,79 @@
 
 .project-title {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin: 0 auto var(--space-xs);
+    font-size: 3.5rem;
+    margin-bottom: var(--space-xs);
     color: var(--text-dark);
     font-weight: 600;
-    text-align: center;
 }
 
 .project-year {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: var(--muted);
     font-weight: 300;
     margin-bottom: var(--space-md);
-    text-align: center;
 }
 
-/* Grille classique et épurée */
-.classic-grid {
+.project-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: var(--space-md);
+    font-weight: 300;
+}
+
+/* Grille avec cadres proportionnels */
+.proportional-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: var(--space-md) 5%;
-    margin: 0 auto;
-    max-width: 1400px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    padding: var(--space-md) 0;
 }
 
-.grid-item {
+.proportional-item {
     position: relative;
     cursor: pointer;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: var(--transition);
     background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    break-inside: avoid;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 200px;
+    min-height: 250px;
 }
 
-.grid-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+/* L'�l�ment conteneur qui pr�serve les proportions */
+.image-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.grid-image {
+.proportional-image {
     width: 100%;
     height: auto;
-    object-fit: contain;
     display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+    object-fit: contain;
 }
 
-.grid-item:hover .grid-image {
-    transform: scale(1.03);
+.proportional-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
-/* Lightbox améliorée */
+.proportional-item:hover .proportional-image {
+    transform: scale(1.05);
+}
+
+/* Lightbox */
 .lightbox {
     position: fixed;
     top: 0;
@@ -103,7 +121,7 @@
     z-index: 1000;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.3s ease;
 }
 
 .lightbox.open {
@@ -125,16 +143,16 @@
 
 .lightbox-close {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
     color: white;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
     z-index: 1001;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -144,7 +162,7 @@
 
 .lightbox-close:hover {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .lightbox-nav {
@@ -161,10 +179,10 @@
     background: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -174,98 +192,88 @@
 
 .lightbox-prev:hover, .lightbox-next:hover {
     background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 .lightbox-counter {
     position: absolute;
-    bottom: 15px;
+    bottom: 20px;
     left: 0;
     width: 100%;
     text-align: center;
     color: white;
-    font-size: 极1rem;
+    font-size: 1.1rem;
     opacity: 0.8;
 }
 
-/* Animation simplifiée */
+/* Animation */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { 
+        opacity: 0; 
+        transform: translateY(30px) scale(0.95); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
 }
 
 .fade-in {
     opacity: 0;
-    animation: fadeIn 0.5s ease forwards;
+    animation: fadeIn 0.8s ease forwards;
+    animation-play-state: paused;
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .classic-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    .proportional-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
 }
 
 @media (max-width: 900px) {
-    .classic-grid {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 15px;
+    .proportional-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
     }
     
     .project-title {
-        font-size: 2.4rem;
+        font-size: 2.8rem;
     }
 }
 
 @media (max-width: 768px) {
     .project-container {
-        padding: 70px 0 30px;
+        padding: 100px 0 40px;
+    }
+    
+    .project-title {
+        font-size: 2.4rem;
+    }
+    
+    .project-year {
+        font-size: 1.2rem;
+    }
+    
+    .proportional-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .proportional-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
     }
     
     .project-title {
         font-size: 2rem;
     }
     
-    .classic-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 12px;
-        padding: var(--space-sm) 4%;
-    }
-}
-
-@media (max-width: 600px) {
-    .classic-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 10px;
-    }
-    
-    .project-title {
-        font-size: 1.8rem;
-    }
-    
     .lightbox-prev, .lightbox-next {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-    
-    .lightbox-close {
-        font-size: 1.8rem;
-        top: 10px;
-        right: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .classic-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .project-title {
-        font-size: 1.6rem;
-    }
-    
-    .project-year {
-        font-size: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
     }
 }

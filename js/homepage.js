@@ -10,14 +10,26 @@ const carouselImages = [
     "assets/images/projet-quiet-noise/545404696_1294171685586075_8921741402654129061_n.jpg"
 ];
 
+// Mélanger aléatoirement le tableau d'images
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 // Initialisation du carrousel
 function initCarousel() {
     const carouselSlides = document.getElementById('carouselSlides');
     
+    // Mélanger les images aléatoirement
+    const shuffledImages = shuffleArray([...carouselImages]);
+    
     let currentSlide = 0;
     
     // Création des slides
-    carouselImages.forEach((image, index) => {
+    shuffledImages.forEach((image, index) => {
         const slide = document.createElement('div');
         slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
         slide.innerHTML = `<img src="${image}" alt="Quiet Noise Project ${index + 1}">`;
@@ -38,12 +50,12 @@ function initCarousel() {
     
     // Aller à la slide suivante
     function nextSlide() {
-        const nextIndex = (currentSlide + 1) % carouselImages.length;
+        const nextIndex = (currentSlide + 1) % shuffledImages.length;
         goToSlide(nextIndex);
     }
     
-    // Défilement automatique (5 secondes) - ne s'arrête jamais
-    setInterval(nextSlide, 5000);
+    // Défilement automatique (4 secondes) - ne s'arrête jamais
+    setInterval(nextSlide, 4000);
 }
 
 // Gestion du menu mobile

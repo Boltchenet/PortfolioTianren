@@ -13,23 +13,22 @@ const imageList = [
 function generateGallery() {
     const gridContainer = document.getElementById('grid-container');
     
-    // Commencer à partir de l'index 1 car l'index 0 est l'image de couverture
-    for (let i = 1; i < imageList.length; i++) {
-        const imageName = imageList[i];
+    // Inclure toutes les images maintenant (plus de couverture séparée)
+    imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${i * 0.05}s`;
+        gridItem.style.animationDelay = `${index * 0.03}s`;
         
         gridItem.innerHTML = `
-            <img src="../assets/images/project-beyond-echo/${imageName}" alt="Beyond the Echo ${i}" class="grid-image">
+            <img src="../assets/images/project-beyond-echo/${imageName}" alt="Beyond the Echo ${index + 1}" class="grid-image" loading="lazy">
         `;
         
         gridItem.addEventListener('click', () => {
-            openLightbox(i);
+            openLightbox(index);
         });
         
         gridContainer.appendChild(gridItem);
-    }
+    });
 }
 
 // Lightbox functionality

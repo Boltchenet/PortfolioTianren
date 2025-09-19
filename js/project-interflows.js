@@ -1,4 +1,4 @@
-// Liste des images dans l'ordre spÈcifiÈ
+// Liste des images dans l'ordre sp√©cifi√© (noms de fichiers corrig√©s)
 const imageList = [
     '1d42ba8e-67fb-4124-a3ad-19887df59dfa_rw_1920.jpg',
     'cec0cdfb-4149-46b3-8af8-596623aba568_rw_1920.jpg',
@@ -6,7 +6,7 @@ const imageList = [
     '39893bf8-6bb1-47c1-8a58-dcc85a0ec1f5_rw_1920.jpg',
     '3ad956f3-415a-44e6-9bb6-1f925e9e5959_rw_1920.jpg',
     'e2fa3d23-2ce4-4120-b13d-ae635b18c475_rw_1920.jpg',
-    '9238e576-5681-495f-bbd3-5f3868f2c2ff_rw_1920.jpg',
+    '9238e576-5681-495f-bbd3-5f3868f2c2ff_rw_1920.jpg', // "ÊûÅ" supprim√©
     'a15ab2a0-eb13-48b6-80b5-4ddf13846c85_rw_1920.jpg',
     '839cca7e-de6d-40a7-9756-5a6336fc316c_rw_1920.jpg',
     '8b71bc7a-1b8c-4ca8-b44b-08863a717fb3_rw_1920.jpg',
@@ -29,26 +29,27 @@ const imageList = [
     '15d4b6b3-e004-40eb-b56f-ac7c70c57cc6_rw_1920.jpg',
     '67a5917c-9405-419c-936d-6d2413fcb6f9_rw_1920.jpg',
     '817191ab-c72c-443a-86ef-a6ff515257d7_rw_1920.jpg',
-    '7ad49380-ec25-4c8b-a3c9-577f4b3502ef_rw_1920.jpg',
+    '7ad49380-ec25-4c8b-a3c9-577f4b3502ef_rw_1920.jpg', // "ÊûÅ" supprim√©
     'e1553e7f-64ec-420b-9ec8-a400a542f834_rw_1920.jpg',
     'e2ff0ab0-fded-419a-a950-8043044d2b04_rw_1920.jpg'
 ];
 
-// GÈnÈration de la galerie classique
+// G√©n√©ration de la galerie classique
 function generateGallery() {
     const classicGrid = document.getElementById('classic-grid');
     
-    // Commencer ‡ partir de l'index 1 car l'index 0 est l'image de couverture
-    for (let i = 1; i < imageList.length; i++) {
+    // Maintenant on inclut toutes les images
+    for (let i = 0; i < imageList.length; i++) {
         const imageName = imageList[i];
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${i * 0.05}s`;
+        gridItem.style.animationDelay = `${i * 0.03}s`;
         
         const img = document.createElement('img');
         img.src = `../assets/images/project-interflows/${imageName}`;
-        img.alt = `Interflows ${i}`;
+        img.alt = `Interflows ${i+1}`;
         img.className = 'grid-image';
+        img.loading = 'lazy'; // Lazy loading ajout√©
         
         gridItem.appendChild(img);
         gridItem.addEventListener('click', () => {
@@ -96,7 +97,7 @@ function showPrevImage() {
     openLightbox(currentImageIndex);
 }
 
-// …couteurs d'ÈvÈnements
+// √âcouteurs d'√©v√©nements
 lightboxClose.addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox();
@@ -121,5 +122,5 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Charger la galerie lorsque la page est prÍte
+// Charger la galerie lorsque la page est pr√™te
 document.addEventListener('DOMContentLoaded', generateGallery);
