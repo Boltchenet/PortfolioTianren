@@ -46,21 +46,6 @@ function initCarousel() {
         // Activer la nouvelle slide
         document.querySelectorAll('.carousel-slide')[index].classList.add('active');
         currentSlide = index;
-
-        // Mettre à jour les indicateurs
-        updateIndicators(index);
-    }
-    
-    // Mettre à jour les indicateurs de slide
-    function updateIndicators(activeIndex) {
-        const indicators = document.querySelectorAll('.carousel-indicator');
-        indicators.forEach((indicator, index) => {
-            if (index === activeIndex) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
-            }
-        });
     }
     
     // Aller à la slide suivante
@@ -69,27 +54,8 @@ function initCarousel() {
         goToSlide(nextIndex);
     }
     
-    // Créer les indicateurs de slide pour mobile
-    function createIndicators() {
-        if (window.innerWidth <= 768) {
-            const indicatorsContainer = document.createElement('div');
-            indicatorsContainer.className = 'carousel-indicators';
-            
-            shuffledImages.forEach((_, index) => {
-                const indicator = document.createElement('div');
-                indicator.className = `carousel-indicator ${index === 0 ? 'active' : ''}`;
-                indicatorsContainer.appendChild(indicator);
-            });
-            
-            document.querySelector('.carousel-container').appendChild(indicatorsContainer);
-        }
-    }
-    
     // Défilement automatique (4 secondes) - ne s'arrête jamais
     setInterval(nextSlide, 4000);
-    
-    // Créer les indicateurs
-    createIndicators();
 }
 
 // Gestion du menu mobile original
@@ -109,14 +75,12 @@ function initMobileMenu() {
 function initHomepageMobileMenu() {
     const hamburgerMenu = document.getElementById('homepageHamburgerMenu');
     const mobileNav = document.getElementById('homepageMobileNav');
-    const overlay = document.getElementById('homepageMobileNavOverlay');
     
-    if (hamburgerMenu && mobileNav && overlay) {
+    if (hamburgerMenu && mobileNav) {
         hamburgerMenu.addEventListener('click', (e) => {
             e.stopPropagation();
             hamburgerMenu.classList.toggle('active');
             mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
             
             // Empêcher le défilement quand le menu est ouvert
             if (mobileNav.classList.contains('active')) {
@@ -126,12 +90,15 @@ function initHomepageMobileMenu() {
             }
         });
         
-        // Fermer le menu en cliquant sur l'overlay
-        overlay.addEventListener('click', () => {
-            hamburgerMenu.classList.remove('active');
-            mobileNav.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
+        // Fermer le menu en cliquant à l'extérieur
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                e.target !== hamburgerMenu) {
+                hamburgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
         
         // Fermer le menu en cliquant sur un lien
@@ -139,7 +106,6 @@ function initHomepageMobileMenu() {
             link.addEventListener('click', () => {
                 hamburgerMenu.classList.remove('active');
                 mobileNav.classList.remove('active');
-                overlay.classList.remove('active');
                 document.body.style.overflow = 'auto';
             });
         });
@@ -156,8 +122,7 @@ function adjustCarouselForMobile() {
             // Ajuster la hauteur pour s'adapter à l'écran mobile
             const windowHeight = window.innerHeight;
             const headerHeight = document.getElementById('homepage-mobile-header').offsetHeight;
-            const footerHeight = document.querySelector('.mobile-social-footer').offsetHeight;
-            const carouselHeight = windowHeight - headerHeight - footerHeight;
+            const carouselHeight = windowHeight - headerHeight;
             
             carouselContainer.style.height = `${carouselHeight}px`;
             carouselSlides.style.height = `${carouselHeight}px`;
@@ -179,21 +144,6 @@ function adjustCarouselForMobile() {
                 img.style.objectFit = 'contain';
             });
         }
-    } else {
-        // Réinitialiser les styles pour desktop
-        const carouselContainer = document.querySelector('.carousel-container');
-        const carouselSlides = document.querySelector('.carousel-slides');
-        
-        if (carouselContainer && carouselSlides) {
-            carouselContainer.style.height = '';
-            carouselSlides.style.height = '';
-            
-            document.querySelectorAll('.carousel-slide img').forEach(img => {
-                img.style.maxHeight = '';
-                img.style.maxWidth = '';
-                img.style.objectFit = '';
-            });
-        }
     }
 }
 
@@ -210,8 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Empêcher le défilement par défaut sur mobile
 document.addEventListener('touchmove', function(e) {
-    const mobileNav = document.getElementById('homepageMobileNav');
-    if (mobileNav && mobileNav.classList.contains('active')) {
+    if (document.getElementById('homepageMobileNav').classList.contains('active')) {
         e.preventDefault();
     }
 }, { passive: false });

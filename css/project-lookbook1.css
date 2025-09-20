@@ -1,6 +1,6 @@
-/* Styles spécifiques à la page de projet Lookbook Fashion */
+/* Styles sp cifiques   la page de projet Lookbook Fashion */
 .project-container {
-    padding: 100px 0 40px; /* Augmentation du padding-top de 80px à 100px */
+    padding: 100px 0 40px; /* Augmentation du padding-top de 80px   100px */
     background-color: var(--bg-base);
 }
 
@@ -16,7 +16,7 @@
 .project-info {
     max-width: 600px;
     margin-bottom: var(--space-xl);
-    padding-top: 20px; /* Ajout d'un padding supplémentaire */
+    padding-top: 20px; /* Ajout d'un padding suppl mentaire */
 }
 
 .project-title {
@@ -32,7 +32,7 @@
     font-weight: 300;
 }
 
-/* Vertical Grid Gallery - optimisée pour les images verticales */
+/* Vertical Grid Gallery - optimis e pour les images verticales */
 .vertical-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -91,7 +91,7 @@
 .lightbox-content {
     position: relative;
     max-width: 90%;
-   极 max-height: 90%;
+    max-height: 90%;
 }
 
 .lightbox-image {
@@ -131,7 +131,7 @@
     transition: var(--transition);
 }
 
-.l极ightbox-prev:hover, .lightbox-next:hover {
+.lightbox-prev:hover, .lightbox-next:hover {
     opacity: 1;
 }
 
@@ -154,43 +154,6 @@
 .fade-in {
     opacity: 0;
     animation: fadeIn 0.8s ease forwards;
-}
-
-/* Footer simplifié comme Beyond the Echo */
-footer {
-    background-color: var(--bg-base);
-    padding: var(--space-md) 0;
-    text-align: center;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.social-links {
-    display: flex;
-    gap: var(--space-md);
-}
-
-.social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #fff;
-    color: var(--text-dark);
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.social-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    color: var(--text);
 }
 
 /* Responsive */
@@ -221,7 +184,7 @@ footer {
     }
     
     .project-title {
-        font-size: 2极rem;
+        font-size: 2rem;
     }
     
     .project-container {
@@ -229,15 +192,6 @@ footer {
     }
     
     .project-info {
-        padding-top: 15px; /* Réduction du padding sur mobile */
-    }
-    
-    .social-links {
-        gap: var(--space-sm);
-    }
-    
-    .social-link {
-        width: 36px;
-        height: 36px;
+        padding-top: 15px; /* R duction du padding sur mobile */
     }
 }

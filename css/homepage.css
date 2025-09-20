@@ -356,204 +356,35 @@ html, body {
     color: var(--text);
 }
 
-/* Footer pour les réseaux sociaux en mobile */
-.mobile-social-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1rem 0;
-    background: var(--overlay-light);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    display: none;
-    z-index: 900;
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .left-column {
+        width: 35%;
+        padding: var(--space-lg) var(--space-md);
+    }
+    
+    .right-column {
+        width: 65%;
+    }
+    
+    .artist-main-name {
+        font-size: 2.2rem;
+    }
+    
+    .nav-link.large-link {
+        font-size: 1.6rem;
+    }
+    
+    .nav-link {
+        font-size: 1.2rem;
+    }
+    
+    .project-categories .nav-link {
+        font-size: 1.1rem;
+    }
 }
-
-.social-links-mobile {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.social-link-mobile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-    color: var(--text-dark);
-    font-size: 1.2rem;
-}
-
-.social-link-mobile:hover {
-    background-color: var(--text);
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* ==========================================================================
-   RESPONSIVE MOBILE REDESIGN - Homepage uniquement
-   ========================================================================== */
 
 @media (max-width: 768px) {
-    /* Header mobile amélioré */
-    .homepage-mobile-only {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 1000;
-        background: var(--overlay-light);
-        backdrop-filter: blur(15px);
-        padding: 1rem 0;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        display: flex;
-        flex-direction: column;
-    }
-
-    .homepage-mobile-header-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .homepage-mobile-artist-name {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: var(--text-dark);
-        letter-spacing: 0.5px;
-    }
-
-    .homepage-mobile-tagline {
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-top: 2px;
-    }
-
-    /* Menu hamburger amélioré */
-    .homepage-hamburger-menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 28px;
-        height: 20px;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 0;
-        position: relative;
-        z-index: 1001;
-    }
-
-    .homepage-hamburger-menu span {
-        height: 2px;
-        width: 100%;
-        background-color: var(--text-dark);
-        transition: all 0.3s ease;
-        border-radius: 2px;
-        transform-origin: center;
-    }
-
-    .homepage-hamburger-menu.active span:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .homepage-hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .homepage-hamburger-menu.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    /* Navigation mobile améliorée */
-    .homepage-mobile-nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        height: 100vh;
-        background: var(--overlay-light);
-        backdrop-filter: blur(20px);
-        padding: 5rem 2rem 2rem;
-        flex-direction: column;
-        gap: 0;
-        display: flex;
-        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
-        transition: right 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
-        z-index: 999;
-    }
-
-    .homepage-mobile-nav.active {
-        right: 0;
-    }
-
-    .homepage-nav-item {
-        padding: 1.5rem 1rem;
-        font-size: 1.3rem;
-        color: var(--text-dark);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        text-align: left;
-        position: relative;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-    }
-
-    .homepage-nav-item:before {
-        display: none;
-    }
-
-    .homepage-nav-item:after {
-        content: "→";
-        position: absolute;
-        right: 1rem;
-        opacity: 0.5;
-        transition: transform 0.3s ease;
-    }
-
-    .homepage-nav-item:hover {
-        background: rgba(0, 0, 0, 0.03);
-        padding-left: 1.5rem;
-    }
-
-    .homepage-nav-item:hover:after {
-        transform: translateX(5px);
-    }
-
-    /* Overlay de fond quand le menu est ouvert */
-    .homepage-mobile-nav-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(4px);
-        z-index: 998;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .homepage-mobile-nav-overlay.active {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Footer réseaux sociaux mobile */
-    .mobile-social-footer {
-        display: block;
-    }
-
     /* Réactiver le défilement en mode mobile */
     html, body {
         overflow: auto;
@@ -573,7 +404,7 @@ html, body {
     .left-column {
         padding: var(--space-md);
         min-height: auto;
-        justify-content: flex-start;
+        justify-content: flex-start; /* Réinitialiser pour mobile */
         display: none; /* Cacher la colonne de gauche en mobile */
     }
     
@@ -615,84 +446,6 @@ html, body {
     
     .homepage-mobile-only {
         display: block; /* Afficher le nouveau header mobile */
-    }
-
-    /* Indicateur de slide pour mobile */
-    .carousel-indicators {
-        position: absolute;
-        bottom: 5rem;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        z-index: 10;
-    }
-
-    .carousel-indicator {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.5);
-        transition: all 0.3s ease;
-    }
-
-    .carousel-indicator.active {
-        background: white;
-        transform: scale(1.2);
-    }
-
-    /* Navigation tactile pour le carousel */
-    .carousel-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-        opacity: 0;
-        transition: all 0.3s ease;
-        border: none;
-    }
-
-    .carousel-container:hover .carousel-nav-btn {
-        opacity: 1;
-    }
-
-    .carousel-prev {
-        left: 1rem;
-    }
-
-    .carousel-next {
-        right: 1rem;
-    }
-
-    /* Info bouton pour mobile */
-    .mobile-info-btn {
-        position: fixed;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: var(--text-dark);
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 900;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .mobile-info-btn:hover {
-        transform: scale(1.1);
     }
 }
 
@@ -742,67 +495,5 @@ html, body {
         max-width: 100%;
         max-height: 100%;
         object-fit: cover;
-    }
-
-    /* Ajustements supplémentaires pour petits écrans */
-    .homepage-mobile-header-content {
-        width: 92%;
-    }
-
-    .homepage-mobile-nav {
-        width: 85%;
-        padding: 4.5rem 1.5rem 1.5rem;
-    }
-
-    .homepage-nav-item {
-        font-size: 1.1rem;
-        padding: 1.2rem 1rem;
-    }
-
-    .carousel-indicators {
-        bottom: 4.5rem;
-    }
-
-    .mobile-info-btn {
-        bottom: 1rem;
-        right: 1rem;
-        width: 44px;
-        height: 44px;
-    }
-
-    .social-link-mobile {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-    }
-}
-
-/* Support des appareils avec encoches */
-@supports(padding: max(0px)) {
-    .homepage-mobile-only {
-        padding-top: max(1rem, env(safe-area-inset-top));
-        padding-right: max(1rem, env(safe-area-inset-right));
-        padding-bottom: max(1rem, env(safe-area-inset-bottom));
-        padding-left: max(1rem, env(safe-area-inset-left));
-    }
-
-    .homepage-mobile-nav {
-        padding-top: max(5rem, calc(env(safe-area-inset-top) + 3rem));
-        padding-right: max(2rem, env(safe-area-inset-right));
-        padding-bottom: max(2rem, env(safe-area-inset-bottom));
-        padding-left: max(2rem, env(safe-area-inset-left));
-    }
-
-    .carousel-nav-btn {
-        margin: env(safe-area-inset-top) 0 env(safe-area-inset-bottom) 0;
-    }
-
-    .mobile-info-btn {
-        bottom: max(1.5rem, env(safe-area-inset-bottom));
-        right: max(1.5rem, env(safe-area-inset-right));
-    }
-
-    .mobile-social-footer {
-        padding-bottom: max(1rem, env(safe-area-inset-bottom));
     }
 }
