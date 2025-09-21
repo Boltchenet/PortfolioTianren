@@ -12,48 +12,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header pour version mobile seulement -->
-    <header id="mobile-header" class="mobile-only">
-        <div class="container header-container">
-            <div class="header-content">
-                <div class="artist-name" id="mobileArtistName">Taren Wang</div>
-                <button class="hamburger-menu" id="hamburgerMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-        <nav class="mobile-nav" id="mobileNav">
-            <a href="projects.html" class="nav-item">Projects</a>
-            <a href="about.html" class="nav-item">About</a>
-            <a href="legal.html" class="nav-item">Legal Notice</a>
-            <a href="privacy.html" class="nav-item">Privacy</a>
-        </nav>
-    </header>
-
-    <!-- Nouveau header spécial mobile pour la homepage -->
+    <!-- Header pour version mobile seulement - NOUVEAU DESIGN -->
     <header id="homepage-mobile-header" class="homepage-mobile-only">
-        <div class="homepage-mobile-header-content">
-            <div class="homepage-mobile-artist-info">
-                <div class="homepage-mobile-artist-name">Taren Wang</div>
-                <div class="homepage-mobile-tagline">Photographer & Visual Artist</div>
+        <div class="mobile-header-top">
+            <div class="mobile-title-container">
+                <h1 class="mobile-main-title">Taren Wang</h1>
+                <p class="mobile-subtitle">Photographer & Visual Artist</p>
             </div>
-            <button class="homepage-hamburger-menu" id="homepageHamburgerMenu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
+                <span class="menu-toggle-bar"></span>
             </button>
         </div>
-        <nav class="homepage-mobile-nav" id="homepageMobileNav">
-            <a href="projects.html" class="homepage-nav-item">Projects</a>
-            <a href="about.html" class="homepage-nav-item">About</a>
+        
+        <nav class="mobile-nav-menu" id="mobileNavMenu">
+            <a href="about.html" class="mobile-nav-item">About</a>
+            <a href="projects.html" class="mobile-nav-item">Projects</a>
+            <a href="journal.html" class="mobile-nav-item">Journal</a>
         </nav>
-        <div class="homepage-mobile-nav-overlay" id="homepageMobileNavOverlay"></div>
     </header>
 
     <main class="homepage-container">
-        <!-- Colonne de gauche -->
+        <!-- Colonne de gauche (inchangée pour desktop) -->
         <div class="left-column">
             <div class="artist-info">
                 <h1 class="artist-main-name">Taren Wang</h1>

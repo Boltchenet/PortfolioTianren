@@ -238,120 +238,108 @@ html, body {
     display: none;
 }
 
-/* Styles pour le header mobile de la homepage */
+/* NOUVEAU HEADER MOBILE - Design révisé */
 #homepage-mobile-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    padding: 1rem;
+    background: var(--bg-light);
+    padding: 1.5rem 1rem 1rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     z-index: 100;
-    background-color: var(--overlay);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
 }
 
-.homepage-mobile-header-content {
+.mobile-header-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
-.homepage-mobile-artist-name {
+.mobile-title-container {
+    flex: 1;
+}
+
+.mobile-main-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 600;
     color: var(--text-dark);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.1;
+    cursor: pointer;
 }
 
-.homepage-mobile-tagline {
+.mobile-subtitle {
     font-size: 0.9rem;
     color: var(--muted);
+    margin: 0;
+    font-weight: 300;
 }
 
-.homepage-hamburger-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    background: transparent;
+.mobile-menu-toggle {
+    background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding: 0.5rem;
+    margin: -0.5rem -0.5rem -0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
 }
 
-.homepage-hamburger-menu span {
+.menu-toggle-bar {
+    width: 20px;
     height: 2px;
-    width: 100%;
     background-color: var(--text-dark);
-    transition: var(--transition);
+    margin: 2px 0;
+    transition: all 0.3s ease;
+    transform-origin: center;
 }
 
-.homepage-hamburger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+.mobile-menu-toggle.active .menu-toggle-bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
 }
 
-.homepage-hamburger-menu.active span:nth-child(2) {
+.mobile-menu-toggle.active .menu-toggle-bar:nth-child(2) {
     opacity: 0;
 }
 
-.homepage-hamburger-menu.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -6px);
+.mobile-menu-toggle.active .menu-toggle-bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
 }
 
-.homepage-mobile-nav {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    height: 100%;
-    background-color: var(--overlay-light);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
+.mobile-nav-menu {
+    display: none;
     flex-direction: column;
-    gap: 1rem;
+    padding: 1rem 0 0.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: 1rem;
+}
+
+.mobile-nav-menu.active {
     display: flex;
-    transition: right 0.3s ease;
-    z-index: 101;
-    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
 }
 
-.homepage-mobile-nav.active {
-    right: 0;
-}
-
-.homepage-nav-item {
-    padding: 1rem;
-    font-size: 1.2rem;
+.mobile-nav-item {
+    padding: 0.75rem 0;
+    font-size: 1.1rem;
     color: var(--text-dark);
     transition: var(--transition);
-    border-radius: 8px;
+    position: relative;
 }
 
-.homepage-nav-item:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+.mobile-nav-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.homepage-mobile-nav-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 100;
+.mobile-nav-item:hover {
+    color: var(--muted);
+    padding-left: 0.5rem;
 }
 
-.homepage-mobile-nav-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Footer mobile pour réseaux sociaux */
+/* Footer pour les réseaux sociaux en mobile */
 .mobile-social-footer {
     display: none;
     position: fixed;
@@ -401,7 +389,6 @@ html, body {
         flex-direction: column;
         height: auto;
         min-height: 100vh;
-        padding-top: 70px; /* Espace pour le header mobile */
     }
     
     .left-column, .right-column {
@@ -409,28 +396,24 @@ html, body {
     }
     
     .left-column {
-        padding: var(--space-md);
+        padding: 1rem;
         min-height: auto;
         justify-content: flex-start;
         display: none; /* Cacher la colonne de gauche en mobile */
     }
     
     .right-column {
-        height: 50vh;
+        height: auto;
+        order: -1; /* Placer la colonne de droite en premier */
     }
     
     .carousel-container {
-        height: 50vh;
+        height: 60vh;
     }
     
     /* Afficher le header mobile */
     .homepage-mobile-only {
         display: block;
-    }
-    
-    /* Afficher le footer mobile */
-    .mobile-social-footer {
-        display: flex;
     }
     
     /* Ajustements pour mobile */
@@ -447,11 +430,28 @@ html, body {
         margin-top: var(--space-xl);
         justify-content: center;
     }
+    
+    /* Afficher le footer mobile */
+    .mobile-social-footer {
+        display: flex;
+    }
+    
+    /* Ajustement de l'espacement pour le nouveau header */
+    .homepage-container {
+        padding-top: 0;
+    }
+    
+    #homepage-mobile-header {
+        position: sticky;
+        top: 0;
+        background: var(--bg-light);
+        z-index: 100;
+    }
 }
 
 @media (max-width: 480px) {
     .left-column {
-        padding: var(--space-sm);
+        padding: 0.5rem;
     }
     
     .artist-main-name {
@@ -474,11 +474,15 @@ html, body {
         margin-top: var(--space-sm);
     }
     
-    .homepage-mobile-artist-name {
-        font-size: 1.3rem;
+    .mobile-main-title {
+        font-size: 1.5rem;
     }
     
-    .homepage-mobile-tagline {
+    .mobile-subtitle {
         font-size: 0.8rem;
+    }
+    
+    .carousel-container {
+        height: 50vh;
     }
 }

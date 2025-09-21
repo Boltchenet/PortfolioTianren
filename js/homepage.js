@@ -48,19 +48,18 @@ function initCarousel() {
 
 // Gestion du menu mobile de la homepage
 function initHomepageMobileMenu() {
-    const hamburgerMenu = document.getElementById('homepageHamburgerMenu');
-    const mobileNav = document.getElementById('homepageMobileNav');
-    const overlay = document.getElementById('homepageMobileNavOverlay');
+    const menuToggle = document.getElementById('mobileMenuToggle');
+    const mobileNav = document.getElementById('mobileNavMenu');
+    const mobileTitle = document.querySelector('.mobile-main-title');
     
-    if (hamburgerMenu && mobileNav && overlay) {
+    if (menuToggle && mobileNav) {
         const toggleMenu = () => {
-            hamburgerMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
             mobileNav.classList.toggle('active');
-            overlay.classList.toggle('active');
         };
         
-        hamburgerMenu.addEventListener('click', toggleMenu);
-        overlay.addEventListener('click', toggleMenu);
+        menuToggle.addEventListener('click', toggleMenu);
+        mobileTitle.addEventListener('click', toggleMenu);
     }
 }
 
