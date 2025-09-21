@@ -12,6 +12,16 @@ window.addEventListener('scroll', () => {
 const artistName = document.getElementById('artistName');
 const hotbarNav = document.getElementById('hotbarNav');
 
+// Mettre à jour les liens de navigation
+if (hotbarNav) {
+    hotbarNav.innerHTML = `
+        <a href="projects.html" class="nav-item">Projects</a>
+        <a href="about.html" class="nav-item">About</a>
+        <a href="homepage.html" class="nav-item">Homepage</a>
+        <a href="privacy.html" class="nav-item">Privacy</a>
+    `;
+}
+
 if (artistName) {
     artistName.addEventListener('click', (e) => {
         e.preventDefault();
