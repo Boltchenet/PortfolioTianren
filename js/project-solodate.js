@@ -139,5 +139,20 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Hamburger menu functionality
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+
+hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+});
+
+// Fermer le menu mobile en cliquant à l'extérieur
+document.addEventListener('click', (e) => {
+    if (mobileNav.classList.contains('open') && !hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+        mobileNav.classList.remove('open');
+    }
+});
+
 // Charger la galerie lorsque la page est prête
 document.addEventListener('DOMContentLoaded', generateGallery);

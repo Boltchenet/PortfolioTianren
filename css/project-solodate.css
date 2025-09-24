@@ -151,6 +151,87 @@
     font-size: 1rem;
 }
 
+/* Hamburger menu styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-dark);
+    transition: var(--transition);
+}
+
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg-base);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: var(--space-sm) 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-nav-item {
+    padding: var(--space-sm) var(--space-md);
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.mobile-nav-item:hover {
+    background-color: var(--accent-sage-light);
+}
+
+/* Footer simplifié - identique à Furniture */
+footer {
+    background-color: var(--bg-base);
+    padding: var(--space-md) 0;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #fff;
+    color: var(--text-dark);
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    color: var(--text);
+}
+
 /* Animation simplifiée */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -179,6 +260,20 @@
     }
 }
 
+@media (max-width: 768px) {
+    .hotbar-nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .mobile-nav.open {
+        display: flex;
+    }
+}
+
 @media (max-width: 600px) {
     .square-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -187,5 +282,14 @@
     
     .project-title {
         font-size: 2rem;
+    }
+    
+    .social-links {
+        gap: var(--space-sm);
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
     }
 }
