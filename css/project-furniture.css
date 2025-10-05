@@ -95,7 +95,7 @@ body {
     width: 100%;
 }
 
-/* Styles spécifiques à la page de projet Furniture */
+/* Styles spÃ©cifiques Å• la page de projet Furniture */
 .project-container {
     padding: 120px 0 60px;
     background-color: var(--bg-base);
@@ -131,7 +131,7 @@ body {
     margin-bottom: var(--space-md);
 }
 
-/* Grille avec cadres proportionnels - CORRIGÉ */
+/* Grille avec cadres proportionnels - CORRIGÃ‰ */
 .proportional-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -151,10 +151,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 4/3; /* Ratio cohérent pour toutes les images */
+    aspect-ratio: 4/3; /* Ratio cohÃ©rent pour toutes les images */
 }
 
-/* L'élément conteneur qui préserve les proportions */
+/* L'Ã©lÃ©ment conteneur qui prÃ©serve les proportions */
 .image-container {
     width: 100%;
     height: 100%; /* Prendre toute la hauteur du conteneur */
@@ -170,7 +170,7 @@ body {
     height: 100%; /* Prendre toute la hauteur */
     display: block;
     transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
-    object-fit: cover; /* Remplir le conteneur sans déformer */
+    object-fit: cover; /* Remplir le conteneur sans dÃ©former */
 }
 
 .proportional-item:hover {
@@ -282,7 +282,7 @@ body {
     opacity: 0.8;
 }
 
-/* Footer simplifié */
+/* Footer simplifiÃ© */
 footer {
     background-color: var(--bg-base);
     padding: var(--space-md) 0;
@@ -384,7 +384,7 @@ footer {
     }
     
     .proportional-item {
-        aspect-ratio: 1/1; /* Ratio carré sur mobile */
+        aspect-ratio: 1/1; /* Ratio carrÃ© sur mobile */
     }
     
     .header-container {
