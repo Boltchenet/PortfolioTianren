@@ -9,19 +9,26 @@ const imageList = [
     '726e1c46-f08e-43ce-ab77-26608832eea8_rw_1920.png'
 ];
 
-// Génération de la galerie
+// Génération de la galerie avec lazy loading
 function generateGallery() {
     const gridContainer = document.getElementById('grid-container');
     
-    // Inclure toutes les images maintenant (plus de couverture séparée)
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.03}s`;
+        gridItem.style.animationDelay = `${index * 0.1}s`;
         
-        gridItem.innerHTML = `
-            <img src="../assets/images/project-beyond-echo/${imageName}" alt="Beyond the Echo ${index + 1}" class="grid-image" loading="lazy">
-        `;
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'image-placeholder';
+        placeholder.style.backgroundColor = '#f0f0f0';
+        
+        gridItem.appendChild(placeholder);
+        
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadGalleryImage(gridItem, imageName, index);
+        }, index * 100);
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
@@ -29,6 +36,37 @@ function generateGallery() {
         
         gridContainer.appendChild(gridItem);
     });
+}
+
+// Fonction pour charger les images de galerie
+function loadGalleryImage(gridItem, imageName, index) {
+    const placeholder = gridItem.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        img.className = 'grid-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = `Beyond the Echo ${index + 1}`;
+        
+        placeholder.replaceWith(img);
+        
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        placeholder.innerHTML = '<span>Image</span>';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.color = '#999';
+    };
+    
+    img.src = `../assets/images/project-beyond-echo/${imageName}`;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Lightbox functionality

@@ -69,7 +69,7 @@ const projects = [
     }
 ];
 
-// Fonction pour charger les projets dans la grille
+// Fonction pour charger les projets avec lazy loading intelligent
 function loadProjects() {
     const grid = document.querySelector('.projects-grid');
     
@@ -78,18 +78,23 @@ function loadProjects() {
         card.className = `project-card fade-in delay-${index % 8}`;
         card.style.backgroundColor = project.accentColor;
         
-        // Ajouter une classe supplémentaire pour les images verticales
         if (project.vertical) {
             card.classList.add('vertical-card');
         }
         
+        // Créer d'abord un placeholder simple
         card.innerHTML = `
-            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <div class="image-placeholder" style="background: ${project.accentColor}"></div>
             <div class="project-overlay">
                 <h3 class="project-title">${project.title}</h3>
                 <span class="project-year">${project.year}</span>
             </div>
         `;
+        
+        // Charger l'image après un délai progressif
+        setTimeout(() => {
+            loadImageLazily(card, project, index);
+        }, index * 200); // Délai progressif de 200ms entre chaque image
         
         card.addEventListener('click', () => {
             window.location.href = `projects/project-${project.slug}.html`;
@@ -97,6 +102,36 @@ function loadProjects() {
         
         grid.appendChild(card);
     });
+}
+
+// Fonction pour charger une image avec gestion d'erreur
+function loadImageLazily(card, project, index) {
+    const placeholder = card.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        // Remplacer le placeholder par l'image réelle
+        img.className = 'project-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        placeholder.replaceWith(img);
+        
+        // Animation douce
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        // Si l'image échoue, on garde le placeholder coloré
+        console.warn(`Image non chargée: ${project.image}`);
+        placeholder.innerHTML = `<div style="color: white; text-align: center; padding-top: 50%;">${project.title}</div>`;
+    };
+    
+    // Déclencher le chargement
+    img.src = project.image;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Charger les projets lorsque la page est prête

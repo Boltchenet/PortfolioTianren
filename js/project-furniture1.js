@@ -1,5 +1,4 @@
 // Liste des images pour le projet Furniture
-// Remplacez ces noms par les noms réels de vos images
 const imageList = [
     'furniture-cover.jpg',
     'furniture-1.jpg',
@@ -14,7 +13,7 @@ const imageList = [
     'furniture-10.jpg'
 ];
 
-// Génération de la galerie avec cadres proportionnels
+// Génération de la galerie avec lazy loading
 function generateGallery() {
     const proportionalGrid = document.getElementById('proportional-grid');
     
@@ -23,33 +22,61 @@ function generateGallery() {
         const imageName = imageList[i];
         const proportionalItem = document.createElement('div');
         proportionalItem.className = 'proportional-item fade-in';
-        proportionalItem.style.animationDelay = `${i * 0.05}s`;
+        proportionalItem.style.animationDelay = `${i * 0.1}s`;
         
-        // Créer un conteneur pour l'image qui préservera ses proportions
+        // Créer un conteneur pour l'image
         const imageContainer = document.createElement('div');
         imageContainer.className = 'image-container';
         
-        // Créer l'élément image
-        const image = document.createElement('img');
-        image.className = 'proportional-image';
-        image.src = `../assets/images/project-furniture/${imageName}`;
-        image.alt = `Furniture design ${i}`;
-        image.loading = 'lazy';
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'image-placeholder';
+        placeholder.style.backgroundColor = '#f0f0f0';
         
-        // Ajouter l'image au conteneur
-        imageContainer.appendChild(image);
-        
-        // Ajouter le conteneur à l'élément de la grille
+        imageContainer.appendChild(placeholder);
         proportionalItem.appendChild(imageContainer);
-        
-        // Ajouter l'élément à la grille
         proportionalGrid.appendChild(proportionalItem);
         
-        // Ajouter l'événement click pour ouvrir la lightbox
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadGalleryImage(imageContainer, imageName, i);
+        }, (i - 1) * 120); // Délai progressif
+        
         proportionalItem.addEventListener('click', () => {
             openLightbox(i);
         });
     }
+}
+
+// Fonction pour charger les images de galerie
+function loadGalleryImage(imageContainer, imageName, index) {
+    const placeholder = imageContainer.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        img.className = 'proportional-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = `Furniture design ${index}`;
+        
+        placeholder.replaceWith(img);
+        
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        placeholder.innerHTML = '<span>Image</span>';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.color = '#999';
+    };
+    
+    img.src = `../assets/images/project-furniture/${imageName}`;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Fonction pour ouvrir la lightbox
@@ -58,17 +85,10 @@ function openLightbox(index) {
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxCounter = document.getElementById('lightbox-counter');
     
-    // Mettre à jour l'image et le compteur
     lightboxImage.src = `../assets/images/project-furniture/${imageList[index]}`;
     lightboxCounter.textContent = `${index} / ${imageList.length - 1}`;
-    
-    // Ouvrir la lightbox
     lightbox.classList.add('open');
-    
-    // Stocker l'index actuel
     lightbox.dataset.currentIndex = index;
-    
-    // Empêcher le défilement de la page
     document.body.style.overflow = 'hidden';
 }
 

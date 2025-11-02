@@ -7,7 +7,7 @@ const imageList = [
   'f565ca74-35e9-416f-ae4f-08324e03ef5e_rw_1920.jpg'
 ];
 
-// Génération de la galerie avec des images verticales (même format que Lookbook Fashion)
+// Génération de la galerie avec lazy loading
 function generateGallery() {
     const verticalGrid = document.getElementById('vertical-grid');
     
@@ -16,9 +16,17 @@ function generateGallery() {
         gridItem.className = 'vertical-item fade-in';
         gridItem.style.animationDelay = `${index * 0.1}s`;
         
-        gridItem.innerHTML = `
-            <img src="../assets/images/lookbook-fashion/${imageName}" alt="Lookbook Veil ${index + 1}" class="vertical-image">
-        `;
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'image-placeholder';
+        placeholder.style.backgroundColor = '#f0f0f0';
+        
+        gridItem.appendChild(placeholder);
+        
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadGalleryImage(gridItem, imageName, index);
+        }, index * 150);
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
@@ -26,6 +34,37 @@ function generateGallery() {
         
         verticalGrid.appendChild(gridItem);
     });
+}
+
+// Fonction pour charger les images de galerie
+function loadGalleryImage(gridItem, imageName, index) {
+    const placeholder = gridItem.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        img.className = 'vertical-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = `Lookbook Veil ${index + 1}`;
+        
+        placeholder.replaceWith(img);
+        
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        placeholder.innerHTML = '<span>Image</span>';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.color = '#999';
+    };
+    
+    img.src = `../assets/images/lookbook-fashion/${imageName}`;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Lightbox functionality

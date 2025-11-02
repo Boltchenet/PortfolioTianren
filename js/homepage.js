@@ -10,19 +10,61 @@ const carouselImages = [
     "assets/images/projet-quiet-noise/545404696_1294171685586075_8921741402654129061_n.jpg"
 ];
 
-// Initialisation du carrousel
+// Initialisation du carrousel avec lazy loading
 function initCarousel() {
     const carouselSlides = document.getElementById('carouselSlides');
     
     let currentSlide = 0;
     
-    // Création des slides
+    // Création des slides avec lazy loading
     carouselImages.forEach((image, index) => {
         const slide = document.createElement('div');
         slide.className = `carousel-slide ${index === 0 ? 'active' : ''}`;
-        slide.innerHTML = `<img src="${image}" alt="Quiet Noise Project ${index + 1}">`;
+        
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'carousel-placeholder';
+        placeholder.style.backgroundColor = '#1a1a1a';
+        
+        slide.appendChild(placeholder);
+        
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadCarouselImage(slide, image, index);
+        }, index * 300);
+        
         carouselSlides.appendChild(slide);
     });
+    
+    // Fonction pour charger les images du carousel
+    function loadCarouselImage(slide, imageSrc, index) {
+        const placeholder = slide.querySelector('.carousel-placeholder');
+        const img = new Image();
+        
+        img.onload = function() {
+            img.className = 'carousel-image';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.alt = `Quiet Noise Project ${index + 1}`;
+            
+            placeholder.replaceWith(img);
+            
+            setTimeout(() => {
+                img.style.opacity = '1';
+            }, 100);
+        };
+        
+        img.onerror = function() {
+            placeholder.innerHTML = '<span style="color: white;">Image</span>';
+            placeholder.style.display = 'flex';
+            placeholder.style.alignItems = 'center';
+            placeholder.style.justifyContent = 'center';
+        };
+        
+        img.src = imageSrc;
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.5s ease';
+    }
     
     // Fonction pour aller à une slide spécifique
     function goToSlide(index) {
@@ -59,7 +101,9 @@ function initHomepageMobileMenu() {
         };
         
         menuToggle.addEventListener('click', toggleMenu);
-        mobileTitle.addEventListener('click', toggleMenu);
+        if (mobileTitle) {
+            mobileTitle.addEventListener('click', toggleMenu);
+        }
     }
 }
 

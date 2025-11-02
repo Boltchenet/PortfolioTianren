@@ -56,18 +56,26 @@ const imageList = [
     'drowningpigeon.jpg'
 ];
 
-// Génération de la galerie avec des images carrées
+// Génération de la galerie avec lazy loading
 function generateGallery() {
     const squareGrid = document.getElementById('square-grid');
     
     imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${index * 0.03}s`;
+        gridItem.style.animationDelay = `${index * 0.1}s`; // Augmenter le délai
         
-        gridItem.innerHTML = `
-            <img src="../assets/images/project-solodate/${imageName}" alt="SoloDate ${imageName}" class="grid-image" loading="lazy">
-        `;
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'image-placeholder';
+        placeholder.style.backgroundColor = '#f0f0f0';
+        
+        gridItem.appendChild(placeholder);
+        
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadGalleryImage(gridItem, imageName, index);
+        }, index * 100); // Délai progressif
         
         gridItem.addEventListener('click', () => {
             openLightbox(index);
@@ -75,6 +83,40 @@ function generateGallery() {
         
         squareGrid.appendChild(gridItem);
     });
+}
+
+// Fonction pour charger les images de galerie
+function loadGalleryImage(gridItem, imageName, index) {
+    const placeholder = gridItem.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        img.className = 'grid-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = `SoloDate ${imageName}`;
+        
+        // Remplacer le placeholder
+        placeholder.replaceWith(img);
+        
+        // Animation douce
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        // Garder le placeholder si l'image échoue
+        placeholder.innerHTML = '<span>Image</span>';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.color = '#999';
+    };
+    
+    img.src = `../assets/images/project-solodate/${imageName}`;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Lightbox functionality
@@ -143,13 +185,15 @@ document.addEventListener('keydown', (e) => {
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
 
-hamburger.addEventListener('click', () => {
-    mobileNav.classList.toggle('open');
-});
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+    });
+}
 
 // Fermer le menu mobile en cliquant à l'extérieur
 document.addEventListener('click', (e) => {
-    if (mobileNav.classList.contains('open') && !hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
+    if (mobileNav && mobileNav.classList.contains('open') && !hamburger.contains(e.target) && !mobileNav.contains(e.target)) {
         mobileNav.classList.remove('open');
     }
 });

@@ -273,3 +273,9 @@ html {
         font-size: 0.8rem;
     }
 }
+
+/* Optimisations de performance pour toutes les images */
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}

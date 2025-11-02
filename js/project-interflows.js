@@ -6,7 +6,7 @@ const imageList = [
     '39893bf8-6bb1-47c1-8a58-dcc85a0ec1f5_rw_1920.jpg',
     '3ad956f3-415a-44e6-9bb6-1f925e9e5959_rw_1920.jpg',
     'e2fa3d23-2ce4-4120-b13d-ae635b18c475_rw_1920.jpg',
-    '9238e576-5681-495f-bbd3-5f3868f2c2ff_rw_1920.jpg', // "极" supprimé
+    '9238e576-5681-495f-bbd3-5f3868f2c2ff_rw_1920.jpg',
     'a15ab2a0-eb13-48b6-80b5-4ddf13846c85_rw_1920.jpg',
     '839cca7e-de6d-40a7-9756-5a6336fc316c_rw_1920.jpg',
     '8b71bc7a-1b8c-4ca8-b44b-08863a717fb3_rw_1920.jpg',
@@ -29,35 +29,69 @@ const imageList = [
     '15d4b6b3-e004-40eb-b56f-ac7c70c57cc6_rw_1920.jpg',
     '67a5917c-9405-419c-936d-6d2413fcb6f9_rw_1920.jpg',
     '817191ab-c72c-443a-86ef-a6ff515257d7_rw_1920.jpg',
-    '7ad49380-ec25-4c8b-a3c9-577f4b3502ef_rw_1920.jpg', // "极" supprimé
+    '7ad49380-ec25-4c8b-a3c9-577f4b3502ef_rw_1920.jpg',
     'e1553e7f-64ec-420b-9ec8-a400a542f834_rw_1920.jpg',
     'e2ff0ab0-fded-419a-a950-8043044d2b04_rw_1920.jpg'
 ];
 
-// Génération de la galerie classique
+// Génération de la galerie avec lazy loading
 function generateGallery() {
     const classicGrid = document.getElementById('classic-grid');
     
-    // Maintenant on inclut toutes les images
-    for (let i = 0; i < imageList.length; i++) {
-        const imageName = imageList[i];
+    imageList.forEach((imageName, index) => {
         const gridItem = document.createElement('div');
         gridItem.className = 'grid-item fade-in';
-        gridItem.style.animationDelay = `${i * 0.03}s`;
+        gridItem.style.animationDelay = `${index * 0.1}s`;
         
-        const img = document.createElement('img');
-        img.src = `../assets/images/project-interflows/${imageName}`;
-        img.alt = `Interflows ${i+1}`;
-        img.className = 'grid-image';
-        img.loading = 'lazy'; // Lazy loading ajouté
+        // Créer d'abord un placeholder
+        const placeholder = document.createElement('div');
+        placeholder.className = 'image-placeholder';
+        placeholder.style.backgroundColor = '#f0f0f0';
         
-        gridItem.appendChild(img);
+        gridItem.appendChild(placeholder);
+        
+        // Charger l'image après un délai
+        setTimeout(() => {
+            loadGalleryImage(gridItem, imageName, index);
+        }, index * 80); // Délai plus court car plus d'images
+        
         gridItem.addEventListener('click', () => {
-            openLightbox(i);
+            openLightbox(index);
         });
         
         classicGrid.appendChild(gridItem);
-    }
+    });
+}
+
+// Fonction pour charger les images de galerie
+function loadGalleryImage(gridItem, imageName, index) {
+    const placeholder = gridItem.querySelector('.image-placeholder');
+    const img = new Image();
+    
+    img.onload = function() {
+        img.className = 'grid-image';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = `Interflows ${index + 1}`;
+        
+        placeholder.replaceWith(img);
+        
+        setTimeout(() => {
+            img.style.opacity = '1';
+        }, 50);
+    };
+    
+    img.onerror = function() {
+        placeholder.innerHTML = '<span>Image</span>';
+        placeholder.style.display = 'flex';
+        placeholder.style.alignItems = 'center';
+        placeholder.style.justifyContent = 'center';
+        placeholder.style.color = '#999';
+    };
+    
+    img.src = `../assets/images/project-interflows/${imageName}`;
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.3s ease';
 }
 
 // Lightbox functionality
